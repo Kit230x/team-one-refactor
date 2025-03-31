@@ -1,0 +1,103 @@
+/* GLOBAL STYLING */
+* {
+    font-family: sans-serif;
+    color: whitesmoke;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(8, 5, 23);
+    margin: 0;
+    padding: 0;
+}
+
+/* ------------------------------------------------ */
+
+/* WELCOME SECTION */
+.welcome-tag {
+    text-align: center; 
+    padding: 95px;
+    border-radius: 15px;
+    background-color: rgba(17, 17, 17, 0.8); /* Semi-transparent background */
+    box-shadow: 0 0 10px #141214;
+    animation: neon-glow 1.5s infinite alternate;
+}
+
+@keyframes neon-glow {
+    0% {
+        box-shadow: 0 0 10px rgb(60, 60, 60), 0 0 15px rgb(60, 60, 60);
+    }
+    50% {
+        box-shadow: 0 0 20px rgb(60, 60, 60), 0 0 35px rgb(60, 60, 60), 0 0 45px rgb(60, 60, 60);
+    }
+    100% {
+        box-shadow: 0 0 10px rgb(60, 60, 60), 0 0 15px rgb(60, 60, 60);
+    }
+}
+
+.background {
+    margin: auto;
+    text-align: center;
+    border-radius: 25px;
+    padding: 50px;
+    width: 1100px;
+    background-color: #222;  /* Lighter background for more contrast */
+    box-shadow: 
+        0px 0px 50px rgba(36, 36, 36, 0.7),  /* Dark shadow on top */
+        0px 0px 100px rgba(53, 53, 53, 0.6), /* Light shadow at the bottom */
+        0px 10px 50px rgba(24, 24, 24, 0.6); /* Soft shadow around the container */
+}
+
+/* ------------------------------------------------ */
+
+/* GAME TYPE CONTAINER */
+.title-container {
+    padding: 10px; 
+    background-color: #111;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: left;
+    padding-left: 40px;
+}
+
+/* GAMES SECTION STYLING */
+.games-container {
+    background-color:rgb(24, 24, 24); 
+    display: block; 
+    height: 180px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.games-section {
+    margin: auto;
+    text-align: center;
+    border-radius: 15px;
+    padding: 50px;
+    width: 1000px;
+    border: 20px solid rgba(0, 0, 0, 0.846);
+    background-color: #222;  /* Lighter background for more contrast */
+    box-shadow: 
+        0px 0px 50px rgba(0, 0, 0, 0.7),  /* Dark shadow on top */
+        0px 0px 100px rgba(20, 20, 20, 0.6), /* Light shadow at the bottom */
+        0px 10px 50px rgba(24, 24, 24, 0.6); /* Soft shadow around the container */
+}
+
+/* Container for Images */
+.outtergames-flexbox {
+    background-color: rgb(16, 16, 16); 
+    border-radius: 10px;
+    height: 150px; 
+    width: 250px; 
+    margin: 15px 10px 15px 10px; 
+    display: inline-block;
+}
+
+/* Preview Images for Games */
+.games-preview {
+    width: 200px; 
+    height: 120px; 
+    padding: 10px;
+}
+
+

@@ -1,0 +1,155 @@
+/* NAV BAR STYLING */
+
+/* HOVER STYLING */
+.nav-hover {
+    color: white;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+
+.navbar-container .nav-hover:hover,
+.nav-random.nav-hover:hover {
+    color: rgba(173, 173, 173, 0.599);
+}
+
+/* ------------------------------------------------ */
+
+/* 
+    Styling for CSS on the NAV is not flex 
+    meaning what is inside won't flex and confirm to the page size
+*/ 
+
+
+/* CONTAINER FOR LEFT SIDE OF NAV BAR */
+.left-container {
+    align-items: center;
+    display: flex;
+    margin-right: 0;
+    gap: 100px;
+    justify-content: flex-start;
+}
+
+/* MAIN DIV CONTAINER */
+.outter-navcontainer {
+    display: flex;
+    height: 55px;
+    position: fixed; 
+    background-color: #55555539;
+    width: 100%; 
+    z-index: 1000; 
+    left: 0; 
+    top: 0;
+}
+
+/* INNER NAV */
+.navbar-container {
+    margin: 5px auto;
+    display: flex;
+    align-items: center;
+    width: 1200px !important;
+    border-radius: 20px;
+    background-color: rgb(12, 9, 27);
+    padding: 10px 30px; 
+    overflow-x: auto; 
+    position: relative;
+    justify-content: space-between;
+    overflow: hidden;
+    flex-wrap: nowrap;
+    top: 0;
+    display: flex;
+}
+
+nav {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 55px !important;
+    z-index: 9999;
+}
+
+/* ------------------------------------------------ */
+
+/* LOGO TEXT AND ICON */
+.navbar-logotext {
+    padding: 3px; 
+    font-size: 1em;
+}
+
+.navbar-logo {
+    display: flex; 
+    align-items: center; 
+    text-decoration: none;
+}
+
+/* ------------------------------------------------ */
+
+/* RANDOM GAME SELECTOR */
+.nav-random {
+    text-decoration: none;
+    font-weight: 800;
+}
+
+/* ------------------------------------------------ */
+
+
+/* CONTAINER FOR RIGHT SIDE OF NAV BAR */
+.right-container {
+    align-items: center;
+    display: flex;
+    margin-right: 0;
+    gap: 80px;
+    justify-content: flex-end;
+    height: 25px;
+}
+
+/* SEARCH BAR */
+.search {
+    display: flex;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: rgba(89, 89, 89, 0.342);
+    align-items: center;
+    height: 25px !important;
+    z-index: 1000;
+}
+
+.search:focus-within {
+    background: #3c3c3c62;
+    transition-duration: 0.25s;
+}
+
+.search-input {
+    font-size: 0.8em;
+    color: white;
+    margin-left: 14px;
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%; 
+    flex-grow: 1;
+    z-index: 1000;
+}
+
+.search-input::placeholder,
+.search-icon {
+    color: rgba(244, 244, 244, 0.25);
+}
+
+/* ------------------------------------------------ */
+
+/* LOGIN / SIGN UP BUTTONS */
+
+.navbar-loginsignup {
+    display: inline-block; 
+    margin: auto; 
+    height: 100%;
+}
+
+.signup-login {
+    text-decoration: none;
+    margin-right: 5px;
+    margin: 0;
+    color: white;
+    display: inline-block;
+    font-weight: 700;
+}

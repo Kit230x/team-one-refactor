@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- LINKS TO STYLING FOLDERS-->
+        <link rel="stylesheet" href="styles/indexstyle/index.css">
+        <link rel="stylesheet" href="styles/nav.css">
+
+        <!-- SEARCH BAR ICON -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+        <title>T1-Games</title>
+
+        <style>
+            .welcome-tag {
+                background-image: url('background.gif');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-size: 100% 700px;
+                margin-top: 55px;
+                border-bottom: 2px solid #3b3b3b;
+            }
+        </style>
+
+    </head>
+
+<!-- ------------------------------------------------------------------------ -->
+
+
+ <!--
+TODOS: 
+
+- NEED TO ADD GAMES ONE AT A TIME 
+- NEED TO PROVIDE IMAGES TO GAMES 
+- NEED TO WORK OUT THE JAVASCRIPT FOR A RANDOM GAME SELECTOR
+- NEED TO FINISH FOOTER AND ADD IT TO OTHER PAGES 
+- MAYBE ADD SOME COOL ART TO THE SIDE OF THE PAGES?  (or fake add space)
+
+- EVENTUALLY LEARN HOW TO ADD SOUNDS A MUSIC TO OUR GAMES
+- REFACTOR MORE BY USING CSS VARIABLES 
+
+
+GAMES TODOS
+- https://www.youtube.com/watch?v=v74X5dtDLvg | SPACE INVADERS 
+- https://www.youtube.com/watch?v=baBq5GAL0_U | SNAKE
+- https://www.youtube.com/watch?v=LTtfoyHxAVU | PONG
+- https://www.youtube.com/watch?v=AzvpHNkjqsg | 2048
+- https://www.youtube.com/watch?v=MM9FAV_CEkU | WORDLE
+- https://www.youtube.com/watch?v=AfhfAxKFP-s | MINE SWEEPER
+- https://www.youtube.com/watch?v=bMYCWccL-3U | BLACK JACK
+- https://www.youtube.com/watch?v=fIBOydve2f8 | ANOTHER ROCK PAPER SCISSORS 
+- https://www.youtube.com/watch?v=5i9HNfKvrLU&list=PLHwEiwAgAA2RVJ_YyEYsJQLlvRORoeSc5 | CHESS
+- https://www.youtube.com/watch?v=jj5ADM2uywg | FLAPPY BIRD
+- https://www.youtube.com/watch?v=8yIKZQMGi0A | CANDY CRUSH
+
+-->
+
+
+    <body>
+        <!--
+        
+        The navigation bar is split into two sections.
+        
+        LEFT: Logo and Title 
+        RIGHT: Search Bar and Login / Sign Up
+
+        -->
+        
+        <!-- NAVIGATION BAR -->
+        <div class="outter-navcontainer">
+            <nav style="margin: auto;">
+                <div class="navbar-container" id="navBarContainer" >
+                
+                    <div class="left-container">
+                        <!-- WEBSITE TITLE NAME-->
+                        <div>
+                            <a href="index.html" class="navbar-logo">
+                                <img src="img/t1-games-logo.png" style="width: 20px;">
+                                <span class="navbar-logotext nav-hover"><b>T1 Games</b></span>
+                            </a>
+                        </div>
+                    
+                        <!-- RANDOM GAME SELECTOR -->
+                        <a href="#" class="nav-random nav-hover" id="randomGame">Play a Random Game</a>
+                    </div>
+                    
+                    <!-- RIGHT SIDE OF NAV CONTAINER-->
+                    <div class="right-container">
+                        <!-- SEARCH BAR -->
+                        <div style="width: 400px;">
+                            <form action="#">
+                                <div class="search nav-hover">
+                                    <span class="material-symbols-outlined search-icon">search</span>
+                                    <input class="search-input" type="text" placeholder="Search for Games" name="search">
+                                </div>
+                            </form>
+                        </div>
+                    
+                        <!-- LOGIN & SIGN UP BUTTON -->
+                        <div class="navbar-loginsignup nav-hover" style="margin-top: 4px;">
+                            <a href="login.html" class="signup-login nav-hover">Login</a>
+                            <span>/</span>
+                            <a href="signup.html" class="signup-login nav-hover">Sign Up</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+<!-- ------------------------------------------------------------------------ -->
+
+        <!-- MAIN CONTENT OF WEBSITE-->
+        <main>
+
+            <!-- WELCOME MESSAGE -->
+            <div class="welcome-tag" style="text-align: center; padding: 95px; margin-bottom: 100px;">
+                <h1 style="vertical-align: center; font-size: 4em; margin-top: 50px; color: white;">Welcome to T1 Games!</h1>
+                <p style="font-size: 2em; margin-bottom: 150px; color: white; font-weight: 600;">Choose and play from different games!</p>
+            </div>
+
+ <!-- ------------------------------------------------------------------------ -->
+
+    <!-- GLOWING OUTTER SECTION -->
+    <div class="background">    
+
+            <!-- GAMES SECTION CONTAINER -->
+            <div class="games-section">
+                <h1 style="margin-bottom: 15px; margin-left: 5px; text-align: left;">Available Games</h1>
+
+ <!-- ------------------------------------------------------------------------ -->
+            <!-- SELECTION ELEMENTS -->
+
+                <!-- CLASSICS CONTAINER -->
+                <div>
+
+                    <!-- TITLE HEADER -->
+                    <div class="title-container"><a><b>CLASSICS</b></a></div>
+
+                    <!-- GAMES CONTAINER-->
+                    <div class="games-container">
+
+                        <!-- GAMES ICON SELECTOR OUTTER-->
+                        <div class="outtergames-flexbox">
+                            <!-- GAMES PICTURE SPOT-->
+                            <div class="games">
+                                <a><img class="games-preview" src="#"></a>
+                            </div>
+                            <!-- GAME TITLE SPOT -->
+                            <div>
+                                <a>TIC-TAC-TOE</a>
+                            </div>
+                        </div>
+
+                        <div class="outtergames-flexbox">
+                            <!-- GAMES PICTURE SPOT-->
+                            <div class="games">
+                                <img class="games-preview" src="#"> 
+                            </div>
+                            <!-- GAME TITLE SPOT -->
+                            <div>
+                                <a>ROCK-PAPER-SCISSORS</a>
+                            </div>
+                        </div>
+
+                        <div class="outtergames-flexbox" >
+                            <!-- GAMES PICTURE SPOT-->
+                            <div class="games">
+                                <img class="games-preview" src="#"> 
+                            </div>
+                            <!-- GAME TITLE SPOT -->
+                            <div>
+                                <a>BLACKJACK</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+ <!-- ------------------------------------------------------------------------ -->
+
+
+                 <!-- STRATEGEY CONTAINER -->
+                 <div style="margin-top: 25px;">
+
+                    <!-- TITLE HEADER -->
+                    <div class="title-container"><a><b>STRATEGY</b></a></div>
+
+                    <!-- GAMES CONTAINER-->
+                    <div class="games-container">
+
+                        <!-- GAMES ICON SELECTOR OUTTER-->
+                        <div class="outtergames-flexbox">
+                            <!-- GAMES PICTURE SPOT-->
+                            <div class="games">
+                                <a><img class="games-preview" src="#"></a>
+                            </div>
+                            <!-- GAME TITLE SPOT -->
+                            <div>
+                                <a>CHESS</a>
+                            </div>
+                        </div>
+
+                        <div class="outtergames-flexbox">
+                            <!-- GAMES PICTURE SPOT-->
+                            <div class="games">
+                                <img class="games-preview" src="#"> 
+                            </div>
+                            <!-- GAME TITLE SPOT -->
+                            <div>
+                                <a>MINESWEPER</a>
+                            </div>
+                        </div>
+
+                        <div class="outtergames-flexbox" >
+                            <!-- GAMES PICTURE SPOT-->
+                            <div class="games">
+                                <img class="games-preview" src="#"> 
+                            </div>
+                            <!-- GAME TITLE SPOT -->
+                            <div>
+                                <a>2048 GAME</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+<!-- ------------------------------------------------------------------------ -->
+
+                 <!-- ARCADE CONTAINER -->
+                 <div style="margin-top: 25px;">
+
+                    <!-- TITLE HEADER -->
+                    <div class="title-container"><a><b>ARCADE</b></a></div>
+
+                    <!-- GAMES CONTAINER-->
+                    <div class="games-container">
+
+                        <!-- GAMES ICON SELECTOR OUTTER-->
+                        <div class="outtergames-flexbox">
+                            <!-- GAMES PICTURE SPOT-->
+                            <div class="games">
+                                <a><img class="games-preview" src="#"></a>
+                            </div>
+                            <!-- GAME TITLE SPOT -->
+                            <div>
+                                <a>FLAPPY-BIRD</a>
+                            </div>
+                        </div>
+
+                        <div class="outtergames-flexbox">
+                            <!-- GAMES PICTURE SPOT-->
+                            <div class="games">
+                                <img class="games-preview" src="#"> 
+                            </div>
+                            <!-- GAME TITLE SPOT -->
+                            <div>
+                                <a>CANDY CRUSH</a>
+                            </div>
+                        </div>
+
+                        <div class="outtergames-flexbox" >
+                            <!-- GAMES PICTURE SPOT-->
+                            <div class="games">
+                                <img class="games-preview" src="#"> 
+                            </div>
+                            <!-- GAME TITLE SPOT -->
+                            <div>
+                                <a>/a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+<!-- ------------------------------------------------------------------------ -->
+
+
+                 <!-- RETRO CONTAINER -->
+                 <div style="margin-top: 25px;">
+
+                    <!-- TITLE HEADER -->
+                    <div class="title-container"><a><b>RETRO</b></a></div>
+
+                    <!-- GAMES CONTAINER-->
+                    <div class="games-container">
+
+                        <!-- GAMES ICON SELECTOR OUTTER-->
+                        <div class="outtergames-flexbox">
+                            <!-- GAMES PICTURE SPOT-->
+                            <div class="games">
+                                <a><img class="games-preview" src="#"></a>
+                            </div>
+                            <!-- GAME TITLE SPOT -->
+                            <div>
+                                <a>PONG</a>
+                            </div>
+                        </div>
+
+                        <div class="outtergames-flexbox">
+                            <!-- GAMES PICTURE SPOT-->
+                            <div class="games">
+                                <img class="games-preview" src="#"> 
+                            </div>
+                            <!-- GAME TITLE SPOT -->
+                            <div>
+                                <a>SNAKE</a>
+                            </div>
+                        </div>
+
+                        <div class="outtergames-flexbox" >
+                            <!-- GAMES PICTURE SPOT-->
+                            <div class="games">
+                                <img class="games-preview" src="#"> 
+                            </div>
+                            <!-- GAME TITLE SPOT -->
+                            <div>
+                                <a>SPACE INVADERS</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </main>
+
+<!-- ------------------------------------------------------------------------ -->
+
+        <footer style="margin-top: 50px; background-color: rgb(38, 38, 38); border-top: 5px solid #111; height: 100%; display: flex; justify-content: space-between;">
+            <p>T1 GAMES</p>
+            <p>2025</p>
+            <p>Contact Us</p>
+        </footer>
+
+    </body>
+</html>
+    
