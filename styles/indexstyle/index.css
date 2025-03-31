@@ -46,6 +46,8 @@ body {
         0px 0px 50px rgba(36, 36, 36, 0.7),  /* Dark shadow on top */
         0px 0px 100px rgba(53, 53, 53, 0.6), /* Light shadow at the bottom */
         0px 10px 50px rgba(24, 24, 24, 0.6); /* Soft shadow around the container */
+    display: flex;
+    justify-content: space-evenly;
 }
 
 /* ------------------------------------------------ */
@@ -91,6 +93,18 @@ body {
     width: 250px; 
     margin: 15px 10px 15px 10px; 
     display: inline-block;
+}
+
+/* SIDE BAR CONTAINERS */
+.sidebar {
+    display: flex;
+    width: 150px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2; 
+    background-color: none;
 }
 
 /* Preview Images for Games */
