@@ -97,10 +97,9 @@ body {
 
 /* SIDE BAR CONTAINERS */
 .sidebar {
+    width: 200px;
     display: flex;
-    width: 150px;
     padding: 20px;
-    display: flex;
     flex-direction: column;
     align-items: center;
     z-index: 2; 
