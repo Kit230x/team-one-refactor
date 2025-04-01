@@ -104,6 +104,8 @@ body {
     align-items: center;
     z-index: 2; 
     background-color: none;
+    margin-top: 120px;
+    gap: 150px;
 }
 
 /* Preview Images for Games */
