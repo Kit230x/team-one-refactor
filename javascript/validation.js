@@ -53,8 +53,22 @@ function getSignupFormErrors(username, email, password, repeatPassword) {
     return errors;
 }
 
+function getLoginFormErrors(email, password) {
+    let errors = []
 
-const allInputs = [username_input, email_input, password_input, repeat_password_input];
+    if (email === '' || email == null) {
+        errors.push('Email is required');
+        email_input.parentElement.classList.add('incorrect');
+    }
+
+    if (password === '' || password == null) {
+        errors.push('Password is required');
+        password_input.parentElement.classList.add('incorrect');
+    }
+}
+
+
+const allInputs = [username_input, email_input, password_input, repeat_password_input].filter(input => input != null)
 
 if (username_input && email_input && password_input && repeat_password_input) {
     allInputs.forEach(input => {

@@ -1,12 +1,12 @@
 /* GLOBAL STYLING */
 * {
     font-family: sans-serif;
-    color: whitesmoke;
+    color: var(--text-color);
     box-sizing: border-box;
 }
 
 body {
-    background-color: rgb(8, 5, 23);
+    background-color: var(--background-color);
     margin: 0;
     padding: 0;
 }
@@ -16,13 +16,13 @@ body {
 /* WELCOME SECTION */
 .welcome-tag {
     text-align: center; 
-    padding: 95px;
-    border-radius: 15px;
-    background-color: rgba(17, 17, 17, 0.8); /* Semi-transparent background */
-    box-shadow: 0 0 10px #141214;
+    padding: 100px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
     animation: neon-glow 1.5s infinite alternate;
 }
 
+/* GLOW ANIMATION */
 @keyframes neon-glow {
     0% {
         box-shadow: 0 0 10px rgb(60, 60, 60), 0 0 15px rgb(60, 60, 60);
@@ -35,84 +35,86 @@ body {
     }
 }
 
+/* BACKGROUND OF BOTTOM LAYER */
 .background {
     margin: auto;
     text-align: center;
-    border-radius: 25px;
+    border-radius: 80px;
     padding: 50px;
     width: 1100px;
-    background-color: #222;  /* Lighter background for more contrast */
+    background-color: #1d1d1d;
+    border: 5px solid var(--flexbox-background-color);
     box-shadow: 
-        0px 0px 50px rgba(36, 36, 36, 0.7),  /* Dark shadow on top */
-        0px 0px 100px rgba(53, 53, 53, 0.6), /* Light shadow at the bottom */
-        0px 10px 50px rgba(24, 24, 24, 0.6); /* Soft shadow around the container */
-    display: flex;
-    justify-content: space-evenly;
+        0px 0px 50px rgba(36, 36, 36, 0.7),
+        0px 0px 100px rgba(53, 53, 53, 0.6), 
+        0px 10px 50px rgba(24, 24, 24, 0.6); 
+}
+
+/* LARGE DARK OUTLINE */
+.games-section {
+    border-radius: 40px;
+    padding: 25px;
+    border: 25px solid var(--flexbox-background-color);
+    box-shadow: 
+        0px 0px 100px rgba(0, 0, 0, 0.7),
+        0px 0px 150px rgba(6, 6, 6, 0.6), 
+        0px 25px 100px rgba(6, 6, 6, 0.6); 
 }
 
 /* ------------------------------------------------ */
 
-/* GAME TYPE CONTAINER */
+/* GAME TYPE */
 .title-container {
     padding: 10px; 
-    background-color: #111;
+    background-color: var(--flexbox-background-color);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     text-align: left;
     padding-left: 40px;
+    font-weight: 800;
 }
 
-/* GAMES SECTION STYLING */
+/* GAMES CONTAINER */
 .games-container {
-    background-color:rgb(24, 24, 24); 
-    display: block; 
-    height: 180px;
+    background-color:var(--inner-flexbox-color);
+    height: 200px;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
+    border: 3px solid var(--flexbox-background-color);
 }
 
-.games-section {
-    margin: auto;
-    text-align: center;
-    border-radius: 15px;
-    padding: 50px;
-    width: 1000px;
-    border: 20px solid rgba(0, 0, 0, 0.846);
-    background-color: #222;  /* Lighter background for more contrast */
-    box-shadow: 
-        0px 0px 50px rgba(0, 0, 0, 0.7),  /* Dark shadow on top */
-        0px 0px 100px rgba(20, 20, 20, 0.6), /* Light shadow at the bottom */
-        0px 10px 50px rgba(24, 24, 24, 0.6); /* Soft shadow around the container */
-}
-
-/* Container for Images */
+/* IMAGE AND TITLE CONTAINER */
 .outtergames-flexbox {
-    background-color: rgb(16, 16, 16); 
-    border-radius: 10px;
-    height: 150px; 
-    width: 250px; 
-    margin: 15px 10px 15px 10px; 
+    background-color: var(--flexbox-background-color);
+    border-radius: 15px;
+    height: 170px;
+    width: 250px;
+    margin: 15px 10px 15px 10px;
     display: inline-block;
+    overflow: hidden;
+}
+
+/* PREVIEW IMAGE FOR GAME */
+.games-preview {
+    width: 200px; 
+    height: 140px; 
+    padding: 15px;
 }
 
 /* SIDE BAR CONTAINERS */
 .sidebar {
     width: 200px;
     display: flex;
-    padding: 20px;
+    padding: 0px;
     flex-direction: column;
     align-items: center;
     z-index: 2; 
     background-color: none;
     margin-top: 120px;
+    margin-right: 100px;
+    margin-left: 100px;
     gap: 150px;
 }
 
-/* Preview Images for Games */
-.games-preview {
-    width: 200px; 
-    height: 120px; 
-    padding: 10px;
-}
 
 
