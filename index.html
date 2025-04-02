@@ -61,9 +61,10 @@ GAMES TODOs
 - https://www.youtube.com/watch?v=8yIKZQMGi0A | CANDY CRUSH
 
 -->
-
+<script src="/javascript/randombutton.js"></script>
 
     <body>
+
         <!--
         
         The navigation bar is split into two sections.
@@ -91,7 +92,7 @@ GAMES TODOs
                         </div>
                     
                         <!-- RANDOM GAME SELECTOR -->
-                        <a href="#" class="nav-random nav-hover" id="randomGame">Play a Random Game</a>
+                        <span id="randomButton" class="nav-random nav-hover">Play a Random Game</span>
                     </div>
                     
                     <!-- RIGHT SIDE OF NAV CONTAINER-->
@@ -132,9 +133,9 @@ GAMES TODOs
 
 <!-- MAIN CONTIANER FOR WEBSITE CONTENT -->
 <!-- HOLDS SIDEBAR CONTENT AND MAIN GAMES CONTENT -->
-<div style="display: flex; justify-content: space-between; overflow:hidden;">
+<div style="display: flex; justify-content: space-between; ">
      <!-- LEFT SIDEBAR CONTENT  -->
-        <div class="sidebar" style="margin-left: 20px;">
+        <div class="sidebar" style="margin-left: 25px;">
             <img src="img/flappy-bird.gif" style="width: 60px; transform: rotate(15deg);">
             <img src="img/2048.gif" style="width: 75px; transform: rotate(5deg)">
             <img src="img/snake.gif" style="width: 75px; transform: rotate(-5deg)">
@@ -365,7 +366,7 @@ GAMES TODOs
         </div>
 
             <!-- RIGHT SIDEBAR CONTENT -->
-            <div class="sidebar" style="margin-right: 20px;">
+            <div class="sidebar" style="margin-right: 25px;">
                 <img src="img/chess.gif" style="width: 75px; transform: rotate(-10deg);">
                 <img src="img/cards.gif" style="width: 60px; transform: rotate(5deg)">
                 <img src="img/pong.gif" style="width: 60px; transform: rotate(-5deg)">
