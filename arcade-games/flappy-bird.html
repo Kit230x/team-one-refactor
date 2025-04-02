@@ -17,7 +17,19 @@
         <style>
             #board {
                 background-image: url("./flappybirdbg.png");
+                filter: brightness(100%) !important;
+                z-index: 1000;
             }
+
+            .main-container {
+                background-image: url("ldBlwA.png");
+                filter: brightness(100%);
+                width: 1200;
+                z-index: 100;
+                margin: 50px 0 50px 0;
+                border: 10px solid black;
+            }
+
         </style>
 
 
@@ -29,6 +41,7 @@
  <!--
 TODOS: 
 
+- FIX DIV CONTAINERS, MESSED UP BACKGROUND
 
 -->
 
@@ -92,31 +105,32 @@ TODOS:
 
     <!-- MAIN CONTIANER FOR CONTENT -->
 
-    <div style="display: flex; justify-content: space-between; height: 800px; width: 500px;">
+    <div class="main-container">
+        <div style="display: flex; justify-content: space-between; height: 850px; width: 500px;">
     
 <!-- ------------------------------------------------------------------------ -->
 
-    <!-- LEFT SIDEBAR CONTENT  -->
-    <div class="sidebar" style="margin-left: 250px;">
+            <!-- LEFT SIDEBAR CONTENT  -->
+            <div class="sidebar" style="margin-left: 250px;">
 
-    </div>
+            </div>
 
 <!-- ------------------------------------------------------------------------ -->
 
-    <!-- GAME CONTAINER CONTENT ** PUT GAME CONTENT HERE -->
-    <div>
-        <canvas id="board" style="margin-left: 200px;"></canvas>
-    </div>
+                <!-- GAME CONTAINER CONTENT ** PUT GAME CONTENT HERE -->
+                <div>
+                    <canvas id="board" style="margin-left: 200px; border: 20px solid black; border-radius: 10px; margin-top: 100px;"></canvas>
+                </div>
 
  <!-- ------------------------------------------------------------------------ -->
 
-    <!-- RIGHT SIDEBAR CONTENT -->
-    <div class="sidebar" style="align-items: center;">
+            <!-- RIGHT SIDEBAR CONTENT -->
+            <div class="sidebar" style="align-items: center;">
 
-    </div>
+            </div>
 
 <!-- ------------------------------------------------------------------------ -->
-
+        </div>
     </div>
 </main>
             
