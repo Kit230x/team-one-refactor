@@ -46,16 +46,16 @@ window.onload = function() {
    
     // IMAGES 
     birdImg = new Image();
-    birdImg.src = "/Flappy-Bird/flappybird.png";
+    birdImg.src = "/arcade-games/flappy-bird-img/flappybird.png";
     birdImg.onload = function() {
         context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
     }
 
     topPipeImg = new Image();
-    topPipeImg.src = "/Flappy-Bird/toppipe.png";
+    topPipeImg.src = "/arcade-games/flappy-bird-img/toppipe.png";
 
     bottomPipeImg = new Image();
-    bottomPipeImg.src = "/Flappy-Bird/bottompipe.png";
+    bottomPipeImg.src = "/arcade-games/flappy-bird-img/bottompipe.png";
 
     requestAnimationFrame(update);
     setInterval(placePipes, 1500); //every 1.5 seconds

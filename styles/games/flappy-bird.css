@@ -1,8 +1,14 @@
-body {
-    font-family:'Courier New', Courier, monospace;
-    text-align: center;
+#board {
+    background-image: url("arcade-games/flappy-bird-img/flappybirdbg.png");
+    filter: brightness(100%) !important;
+    z-index: 1000;
 }
 
-#board {
-    background-image: url("./flappybirdbg.png");
+.main-container {
+    background-image: url("arcade-games/flappy-bird-img/background.png");
+    filter: brightness(100%);
+    width: 1200;
+    z-index: 100;
+    margin: 50px 0 50px 0;
+    border: 10px solid black;
 }
