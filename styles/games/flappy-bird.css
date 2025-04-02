@@ -1,11 +1,11 @@
 #board {
-    background-image: url("arcade-games/flappy-bird-img/flappybirdbg.png");
+    background-image: url("../arcade-games/flappy-bird-img/flappybirdbg.png");
     filter: brightness(100%) !important;
     z-index: 1000;
 }
 
 .main-container {
-    background-image: url("arcade-games/flappy-bird-img/background.png");
+    background-image: url("../arcade-games/flappy-bird-img/background.png");
     filter: brightness(100%);
     width: 1200;
     z-index: 100;
