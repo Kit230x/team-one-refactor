@@ -16,6 +16,21 @@
 
         <script src="/javascript/randombutton.js"></script>
 
+        <style>
+            body {
+                text-align: center;
+                width: 500px;
+            }
+
+            #board { 
+                width: 400px;
+                height: 400px;
+
+                background-color: #cdc1b5;
+                border: 6px solid #bbada0;
+            }
+        </style>
+
     </head>
 
 <!-- ------------------------------------------------------------------------ -->
@@ -91,7 +106,10 @@ TODOS:
 
     <!-- GAME CONTAINER CONTENT ** PUT GAME CONTENT HERE -->
     <div>
-
+        <h1>2048</h1>
+        <hr>
+        <h2>Score: <span id="score" 0></span></h2>
+        <div id="board"></div>
     </div>
 
  <!-- ------------------------------------------------------------------------ -->
