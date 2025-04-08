@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="/styles/indexstyle/index.css">
         <link rel="stylesheet" href="/styles/nav.css">
         <link rel="stylesheet" href="/styles/globalstyling.css">
+        <link rel="stylesheet" href="/styles/games/tic-tac-toe.css">
 
 
         <!-- SEARCH BAR ICON -->
@@ -91,6 +92,36 @@ TODOS:
 
     <!-- GAME CONTAINER CONTENT ** PUT GAME CONTENT HERE -->
     <div>
+        <h5 class="difficulty-choices">
+                  
+            <input type="radio" id="easy" name="difficulty" value="Easy" onchange="initializeGame('Easy')">
+            <label for="easy">Easy</label>
+
+            <input type="radio" id="medium" name="difficulty" value="Medium" onchange="initializeGame('Medium')">
+            <label for="medium">Medium</label>
+
+            <input type="radio" id="impossible" name="difficulty" value="Impossible" onchange="initializeGame('Impossible')">
+            <label for="impossible">Impossible</label>
+
+            <input type="radio" id="hotseat" name="difficulty" value="Hotseat Play" onchange="initializeGame('Hotseat')">
+            <label for="hotseat">Hotseat Play</label>
+    
+        </h5>
+                            
+        <div id="cellContainer">
+            <div cellIndex="0" class="cell"></div>
+            <div cellIndex="1" class="cell"></div>
+            <div cellIndex="2" class="cell"></div>
+            <div cellIndex="3" class="cell"></div>
+            <div cellIndex="4" class="cell"></div>
+            <div cellIndex="5" class="cell"></div>
+            <div cellIndex="6" class="cell"></div>
+            <div cellIndex="7" class="cell"></div>
+            <div cellIndex="8" class="cell"></div>
+          </div>
+          <h2 id="statusText">Choose a difficulty</h2>
+          <button id="restartButton">Restart</button>
+          <script src="/javascript/tic-tac-toe.js"> </script>
 
     </div>
 
