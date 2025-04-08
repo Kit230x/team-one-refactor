@@ -1,34 +1,27 @@
-body {
-    background-color: #000;
-    color: white;
-    font-family: sans-serif;
-    text-align: center;
-  }
-  
-  #canvas {
-    box-shadow: 0 5px 40px black;
+#board {
     background-color: #111;
-    display: block;
+    box-shadow: 0 5px 40px black;
     margin: 20px auto;
-  }
+    display: block;
+}
   
-  .game-ui {
+.game-ui {
     margin-top: 20px;
-  }
+}
   
-  #scoreDisplay {
+#scoreDisplay {
     font-size: 18px;
     margin-bottom: 10px;
-  }
+}
   
-  #instructions {
+#instructions {
     font-size: 14px;
     margin-top: 10px;
     margin-bottom: 20px;
-  }
+}
   
-  #startBtn,
-  #restartBtn {
+#startBtn,
+#restartBtn {
     padding: 10px 20px;
     margin: 5px;
     font-size: 16px;
@@ -37,12 +30,20 @@ body {
     background-color: #444;
     border: none;
     border-radius: 5px;
-  }
+}
   
-  #startBtn:disabled,
-  #restartBtn:disabled {
+#startBtn:disabled,
+#restartBtn:disabled {
     background-color: #666;
     color: #ccc;
     cursor: not-allowed;
+}
+  
+#gameOverMessage {
+    display: none;
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 10px;
   }
   

@@ -1,8 +1,12 @@
-const canvas = document.getElementById("canvas");
-const context = canvas.getContext("2d");
-const scoreDisplay = document.getElementById("scoreDisplay");
-const startBtn = document.getElementById("startBtn");
-const restartBtn = document.getElementById("restartBtn");
+let board;
+let boardWidth = 800;
+let boardHeight = 500;
+let context;
+
+let scoreDisplay = document.getElementById("scoreDisplay");
+let startBtn = document.getElementById("startBtn");
+let restartBtn = document.getElementById("restartBtn");
+let gameOverMessage = document.getElementById("gameOverMessage");
 
 let snake, food, timer;
 let score = 0;
@@ -56,6 +60,7 @@ Snake.prototype.move = function () {
     this.snakeArry.pop();
   }
 
+  // Move head
   switch (this.direction) {
     case 37:
       this.head.x -= this.head.w;
@@ -71,24 +76,28 @@ Snake.prototype.move = function () {
       break;
   }
 
+  // Check wall
   if (
     this.head.x < 0 ||
     this.head.y < 0 ||
-    this.head.x >= canvas.width ||
-    this.head.y >= canvas.height
+    this.head.x >= boardWidth ||
+    this.head.y >= boardHeight
   ) {
     clearInterval(timer);
-    alert("Game Over: You hit the wall!");
+    gameOverMessage.innerText = "Game Over: You hit the wall!";
+    gameOverMessage.style.display = "block";
     restartBtn.disabled = false;
   }
 
+  // Check self
   for (let i = 1; i < this.snakeArry.length; i++) {
     if (
       this.snakeArry[i].x === this.head.x &&
       this.snakeArry[i].y === this.head.y
     ) {
       clearInterval(timer);
-      alert("Game Over: You hit yourself!");
+      gameOverMessage.innerText = "Game Over: You hit yourself!";
+      gameOverMessage.style.display = "block";
       restartBtn.disabled = false;
     }
   }
@@ -99,8 +108,8 @@ function getRandomFood() {
   let rect;
   while (isOnSnake) {
     isOnSnake = false;
-    const indexX = getNumberInRange(0, canvas.width / 20);
-    const indexY = getNumberInRange(0, canvas.height / 20);
+    const indexX = getNumberInRange(0, boardWidth / 20);
+    const indexY = getNumberInRange(0, boardHeight / 20);
     rect = new Rect(indexX * 20, indexY * 20, 20, 20, "green");
     for (let i = 0; i < snake.snakeArry.length; i++) {
       if (snake.snakeArry[i].x === rect.x && snake.snakeArry[i].y === rect.y) {
@@ -121,7 +130,7 @@ function isEat() {
 }
 
 function drawAll() {
-  context.clearRect(0, 0, canvas.width, canvas.height);
+  context.clearRect(0, 0, boardWidth, boardHeight);
   food.draw();
   snake.draw();
 }
@@ -144,11 +153,24 @@ function startGame() {
   timer = setInterval(gameLoop, 150);
   restartBtn.disabled = false;
   startBtn.disabled = true;
+
+  gameOverMessage.style.display = "none";
+  gameOverMessage.innerText = "";
 }
 
 function restartGame() {
   startGame();
 }
+
+window.onload = function () {
+  board = document.getElementById("board");
+  board.width = boardWidth;
+  board.height = boardHeight;
+  context = board.getContext("2d");
+
+  startBtn.onclick = startGame;
+  restartBtn.onclick = restartGame;
+};
 
 document.onkeydown = function (e) {
   if (
@@ -158,6 +180,3 @@ document.onkeydown = function (e) {
     snake.direction = e.keyCode;
   }
 };
-
-startBtn.onclick = startGame;
-restartBtn.onclick = restartGame;
