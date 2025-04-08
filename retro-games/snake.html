@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="/styles/indexstyle/index.css">
         <link rel="stylesheet" href="/styles/nav.css">
         <link rel="stylesheet" href="/styles/globalstyling.css">
+        <link rel="stylesheet" href="/styles/games/snake.css">
 
 
         <!-- SEARCH BAR ICON -->
@@ -15,6 +16,8 @@
         <title>T1-Games</title>
 
         <script src="/javascript/randombutton.js"></script>
+        <script src="/javascript/snake.js" defer></script>
+
 
     </head>
 
@@ -78,7 +81,7 @@ TODOS:
     <!-- MAIN CONTIANER FOR CONTENT -->
 
     <!-- HOLDS SIDEBAR CONTENT AND GAME -->
-    <div style="display: flex; justify-content: space-between; height: 500px;">
+    <div style="display: flex; justify-content: space-between;">
     
 <!-- ------------------------------------------------------------------------ -->
 
@@ -89,10 +92,18 @@ TODOS:
 
 <!-- ------------------------------------------------------------------------ -->
 
-    <!-- GAME CONTAINER CONTENT ** PUT GAME CONTENT HERE -->
-    <div>
-
+    <!-- GAME CONTAINER CONTENT -->
+    <div style="width: 100%; text-align: center;">
+        <canvas id="canvas" width="800" height="500"></canvas>
+        <div class="game-ui">
+          <div id="scoreDisplay">Score: 0</div>
+          <button id="startBtn">Start Game</button>
+          <button id="restartBtn" disabled>Restart</button>
+          <div id="instructions">Use ← ↑ → ↓ keys to control the snake. Eat the food to grow. Don't hit walls or yourself!</div>
+        </div>
     </div>
+      
+  
 
  <!-- ------------------------------------------------------------------------ -->
 
