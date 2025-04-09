@@ -1,6 +1,7 @@
 const cells = document.querySelectorAll(".cell");
 const statusText = document.querySelector("#statusText");
 const restartButton = document.querySelector("#restartButton");
+const hotSeatButton = document.querySelector("#hotseat");
 const winConditions = [
     [0, 1, 2],
     [3, 4, 5],
@@ -14,12 +15,27 @@ const winConditions = [
 let options = ["", "", "", "", "", "", "", "", ""];
 let currentPlayer = "X";
 let running = false;
-let gameType = "";
+let difficulty = 0;
+let compChoice = 9;
 
-// initializeGame();
 
-function initializeGame(gameType) {
-    gameType = gameType;
+function hotSeatSelected() {
+    difficulty = 0;
+    restartGame();
+}
+function easySelected() {
+    difficulty = 1;
+    restartGame();
+}
+function mediumSelected() {
+    difficulty = 2;
+    restartGame();
+}
+function impossibleSelected() {
+    difficulty = 3;
+    restartGame();
+}
+function initializeGame() {
     cells.forEach(cell => cell.addEventListener("click", cellClicked));
     restartButton.addEventListener("click", restartGame);
     statusText.textContent = `${currentPlayer}'s turn`;
@@ -44,6 +60,26 @@ function updateCell(cell, index) {
 function changePlayer() {
     currentPlayer = (currentPlayer == "X") ? "O" : "X";
     statusText.textContent = `${currentPlayer}'s turn`;
+    // This method is also controlling CPU moves when not in hotseat mode
+    if (difficulty == 1 && currentPlayer == "O") { // easy
+        statusText.textContent = 'EASY MODE'
+        computerChoice();
+        
+
+        checkWinner();
+
+    } else if (difficulty == 2 && currentPlayer == "O") { // medium
+        statusText.textContent = 'MEDIUM MODE'
+
+
+        checkWinner();
+
+    } else if (difficulty == 3 && currentPlayer == "O") { // impossible
+        statusText.textContent = 'IMPOSSIBLE MODE'
+
+        checkWinner();
+    }
+    
 
 }
 function checkWinner() {
@@ -74,7 +110,22 @@ function checkWinner() {
     }
 }
 function restartGame() {
-    initializeGame();
+    currentPlayer = "X"
     options = ["", "", "", "", "", "", "", "", ""];
     cells.forEach(cell => cell.textContent = "");
+    initializeGame();
+}
+function computerChoice() {
+    
+    compChoice = Math.floor(Math.random() * 9);
+
+    if (options[compChoice] != "") {
+        computerChoice();
+    } else {
+        options[compChoice] = currentPlayer;
+        cells[compChoice].textContent = currentPlayer;
+
+    }
+
+
 }
