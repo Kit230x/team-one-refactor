@@ -9,6 +9,12 @@ body {
     background-color: var(--background-color);
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+html {
+    overflow-x: hidden;
 }
 
 /* ------------------------------------------------ */
@@ -40,12 +46,9 @@ body {
     margin: auto;
     text-align: center;
     display: flex;
-    border-radius: 80px;
-    padding: 85px;
-    width: 100%;
-    max-width: 1200px;
+    border-radius: 60px;
+    padding: 50px;
     background-color: #1d1d1d;
-    flex: 1;
     justify-content: center;
     align-content: center;
     border: 10px solid var(--flexbox-background-color);
@@ -57,7 +60,7 @@ body {
 
 /* LARGE DARK OUTLINE */
 .games-section {
-    border-radius: 40px;
+    border-radius: 45px;
     padding: 25px;
     border: 25px solid var(--flexbox-background-color);
     box-shadow: 
@@ -68,8 +71,8 @@ body {
     display: inline-block;
     max-width: 100%;
     width: 100%;
-    overflow-x: hidden;  /* Contain inner overflow */
-   
+    overflow-x: hidden; 
+   margin: 0 auto;
 }
 
 /* ------------------------------------------------ */
@@ -83,11 +86,13 @@ body {
     text-align: left;
     padding-left: 40px;
     font-weight: 800;
+    max-width: 1000px;
 }
 
 .section-container {
-    min-width: 250px !important;
-    overflow-x: visible;
+   flex: 0 0 250px;
+   min-width: 250px;
+   max-width: 250px;
 }
 
 /* GAMES CONTAINER */
@@ -96,18 +101,11 @@ body {
     overflow-x: auto;
     overflow-y: hidden;
     flex-wrap: nowrap;
+    max-width: 800px;
     gap: 10px;
     height: 200px;
     border-radius: 10px;
     border: 3px solid var(--flexbox-background-color);
-    max-width: 100%; /* Ensures it stays inside red box */
-}
-
-.games-container {
-    border: 3px solid red;
-}
-.outtergames-flexbox {
-    border: 2px dashed yellow;
 }
 
 .games-container::-webkit-scrollbar {
@@ -120,18 +118,17 @@ body {
 
 /* IMAGE AND TITLE CONTAINER */
 .outtergames-flexbox {
-    flex: 0 0 250px; /* Fixed width */
-    min-width: 250px; /* Optional extra insurance */
+    flex: 0 0 250px; 
+    min-width: 250px; 
     height: 170px;
     display: inline-block;
 }
 
-.games-section, .background {
-    overflow-x: visible; /* or auto */
+.background {
+    overflow-x: visible;
     width: 100%;
-    max-width: 100%;
+    max-width: 1200px;
 }
-
 
 
 /* PREVIEW IMAGE FOR GAME */
@@ -140,7 +137,10 @@ body {
     height: 140px; 
     padding: 15px;
     object-fit: cover;
+}
 
+section {
+    max-width: 1000px;
 }
 
 /* SIDE BAR CONTAINERS */

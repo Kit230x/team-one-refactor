@@ -1,0 +1,48 @@
+.container {
+    display: grid;
+    place-items: center;
+    justify-content: center;
+}
+
+.div {
+    display: flex;
+}
+
+li {
+    list-style: none;
+    display: grid;
+    place-items: center;
+    font-size: 0;
+}
+
+.box {
+    margin: .5px;
+    width: 75px;
+    height: 75px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
+}
+
+#tog {
+    margin: 40px 0px;
+    font-size: 1.5rem;
+    text-align: left;
+    background-color: #fff;
+    color: #000;
+    border: 2px solid #fff;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#reset-btn {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
