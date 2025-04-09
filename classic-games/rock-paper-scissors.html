@@ -8,6 +8,8 @@
         <link rel="stylesheet" href="/styles/indexstyle/index.css">
         <link rel="stylesheet" href="/styles/nav.css">
         <link rel="stylesheet" href="/styles/globalstyling.css">
+        <link rel="stylesheet" href="/styles/games/rock-paper-scissors.css">
+        
 
 
         <!-- SEARCH BAR ICON -->
@@ -91,6 +93,22 @@ TODOS:
 
     <!-- GAME CONTAINER CONTENT ** PUT GAME CONTENT HERE -->
     <div>
+        <section id="gamearea">
+            <div id="play-game">
+                <div class="choices">
+                    <button onclick="playRPS('rock')">👊</button>
+                    <button onclick="playRPS('paper')">✋</button>
+                    <button onclick="playRPS('scissors')">✌️</button>
+                </div>
+
+                <div id="playerDisplay"> PLAYER:</div>
+                <div id="computerDisplay"> COMPUTER:</div>
+                <div id="resultDisplay">START A GAME!</div>
+
+                <script src="/javascript/rock-paper-scissors.js"></script>
+                
+            </div>
+        </section>
 
     </div>
 

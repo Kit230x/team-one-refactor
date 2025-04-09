@@ -1,0 +1,344 @@
+* {
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+.container {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.container-game {
+    margin-right: auto;
+    margin-left: auto;
+    width: 854px;
+}
+
+/*HOW TO PLAY STYLING*/
+.how-to-play-instructions{
+    font-size: 16px;
+    background: black;
+    color: white;
+    text-align: left;
+    align-items: center;
+}
+
+.how-to-play-section{
+    font-size: 20px;
+    font-weight: bold;
+    background: black;
+    color: white;
+    margin: 30px 20px 0 24px;
+    text-align: left;
+    align-items: center;
+}
+
+.game-header h1 {
+    margin: 0;
+    margin-bottom: 8px;
+    font-weight: 700;
+    font-size: 24px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: white;
+    text-align: left;
+    width: 854px;
+}
+
+#gamearea {
+    z-index: 1001;
+    position: relative;
+}
+
+#play-game {
+    aspect-ratio: 16/9;
+    background-color: white;
+    /* cursor: pointer; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    place-items: center;
+    position: relative;
+    text-align: center;
+    width: 854px;
+}
+
+svg.play-circle{
+    width: 96px;
+    height: 96px;
+    fill: grey;
+}
+
+.choices{
+    margin-bottom: 30px;
+    align-items: center;
+}
+.choices button {
+    font-size: 6rem;
+    min-width: 125px;
+    margin: 50px 10px;
+    border-radius: 50%;
+    background-color: black;
+    cursor: pointer;
+}
+
+.choices button:hover{
+    background-color: gray;
+    transition-duration: 0.3s;
+}
+
+#playerDisplay, #computerDisplay{
+    font-size: 2.5rem;
+    color: black;
+}
+
+#resultDisplay{
+    font-size: 5rem;
+    margin: 30px 0;
+    color: black;
+}
+
+  /* BODY */
+  body {
+    color: var(--colors--neutral--2);
+    font-size:var(--font-size--text-default);
+    line-height: var(--line-height--text-default);
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  
+  /* CONTAINER  */
+  .container {
+    width: 100%;
+    max-width: 1336px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 20px;
+    padding-right: 20px;
+  }
+
+ /* NAV BAR STYLING*/ 
+  .nav-menu-wrapper {
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    color: rgba(255,255,255,0.6);
+  }
+  
+  /*LOGO SECTIONS*/
+  .brand {
+    padding-left: 0;
+  }
+  
+  .w-nav-brand {
+    color: #333;
+  }
+  
+  img {
+    border: 0;
+  }
+  
+  .t1-games-logo {
+    display: block;
+    max-width: 100%;
+    width: 75px;
+    margin-right: 100px;
+  }
+  
+  .navbar {
+    z-index: 9999;
+    position: sticky;
+    top: 0;
+    background-image: none;
+    background-size: auto;
+    background-repeat: repeat;
+    display:block;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+  }
+  
+  .w.-nav {
+    background-color: black;
+  }
+  
+  /* MAIN NAV SECTIONS */
+  .nav-menu {
+    row-gap: 32px;
+    column-gap: 32px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: relative;
+  }
+  
+  .w.nav-menu {
+    float: right;
+    position: relative;
+  }
+  
+  .nav-link:hover {
+    cursor: pointer;
+    background-image: linear-gradient(#ffffff, #838383);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .nav-link {
+    color: white;
+    font-size: 18px;
+    padding: 40px 0;
+    text-transform: capitalize;
+    transition: all .5s;
+  }
+  
+  .w-nav-link {
+    vertical-align: top;
+    text-align: left;
+    margin: center;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    padding-bottom: 40px;
+    padding-top: 40px;
+    padding-right: 0px;
+    padding-left: 0px;
+    text-transform: capitalize;
+  }
+  
+  .nav-desktop-buttons {
+    grid-column-gap: 24px;
+    grid-row-gap: 24px;
+    justify-content: flex-end;
+    display: flex;
+    align-items: center;
+  }
+  
+  .button-fill {
+    color: white;
+    border-radius: 500px;
+    line-height: 1.1em;
+    transition: all .5s;
+  }
+  
+  /* LOGIN */
+  .button-fill:where(.w-variant-61bc9a0d-6ff0-dc82-f504-e085311c6802) {
+    color: white;
+    background-color: black;
+    background-image: none;
+    padding: 0;
+    transition: all .3s;
+    font-size: 18px;
+    margin-right: 10px;
+    border: 0;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  /* SIGN-UP DOES NOT CONTAIN button-fill */
+  .button-fill:where(.w-variant-b343637e-6926-f2e8-3bf0-555073400c9e) {
+    padding: 14px 24px;
+    font-size: 18px;
+    color: white;
+    background-image: linear-gradient(50deg, #676565, #959595);
+    border-radius: 500px;
+    text-decoration: none;
+  }
+  
+  /* SIGN-UP BORDER */
+  .button-fill:hover {
+      background-image: linear-gradient(50deg, #959595, #676565);
+      cursor: pointer;
+      text-decoration: none;
+  }
+  
+  .w-button:hover {
+    cursor: pointer;
+    background-image: linear-gradient(#ffffff, #838383);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* SPACE BETWEEN MAIN INFO */
+  .hero-section {
+     z-index: 5;
+     padding-top: 80px;
+     padding-bottom: 24px;
+     position: relative;
+  }
+  
+  /* SECTION WITH WELCOME */
+  .hero-layout {
+     grid-column-gap: 60px;
+     grid-row-gap: 60px;
+     flex-flow: column;
+     justify-content: center;
+     align-items: center;
+     display: flex;
+  }
+  
+  .hero-title-block {
+     grid-column-gap: 52px;
+     grid-row-gap: 52px;
+     text-align: center;
+     flex-flow: column;
+     justify-content: center;
+     align-items: center;
+     max-width: 904px;
+     margin-left: auto;
+     margin-right: auto;
+     display: flex;
+  }
+  
+  .hero-title-wrapper {
+     grid-column-gap: 12px;
+     grid-row-gap: 12px;
+     flex-flow: column;
+     display: flex;
+  }
+  
+  .color_white {
+     color: rgba(255,255,255,0.6) !important;
+     text-decoration: none;
+     height: 184px;
+  }
+  
+  .h1.font-700 {
+     font-weight: 700;
+     font-size: 80px !important;
+     color: white;
+  }
+  
+  .h1 {
+     font-family: Plus Jakarta Sans, sans-serif;
+     letter-spacing: -1.5px;
+     opacity: 1;
+     transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotate(0deg) rotateY(0deg) rotateZ(0deg) skew (0deg, 0deg);
+     transform-style: preserve-3d;
+     color: rgb(255, 255, 255);
+  }
+  
+  .hero-description-wrap {
+     max-width: 794px;
+     margin-left: auto;
+     margin-right: auto;
+     padding-left: 20px;
+     padding-right: 20px;
+  }
+  
+  .text-xl {
+     font-size: 25px;
+     color: rgba(255,255,255,0.8) !important;
+     opacity: 0.6;
+     opacity: 1;
+     transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotate(0deg) rotateY(0deg) rotateZ(0deg) skew (0deg, 0deg);
+     transform-style: preserve-3d;
+  }
+  
+  .button-wrap:hover {
+      cursor: pointer;
+      background-clip: text;
+  }
+  
