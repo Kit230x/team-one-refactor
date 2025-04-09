@@ -1,0 +1,56 @@
+/* universal styling reset - ensures padding/margin is consistent across browsers */
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/* display: block; makes it a block level element instead of inline. Gets its own space. */
+/* margin: 0 auto; - 0 means no margin top and bottom, auto means adjust left and right margins equally (width must be provided to work) */
+canvas {
+    background: #eee;
+    display: block;
+    margin: 0 auto;
+}
+
+#board {
+    background-color: #eee;
+    box-shadow: 0 5px 40px black;
+    margin: 20px auto;
+    display: block;
+    border-radius: 10px;
+    transition: box-shadow 0.2s ease;
+}
+  
+.game-ui {
+    margin-top: 20px;
+}
+  
+#scoreDisplay {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+  
+#instructions {
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+  
+#startBtn,
+#restartBtn {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
+    background-color: #444;
+    border: none;
+    border-radius: 5px;
+}
+  
+#startBtn:disabled,
+#restartBtn:disabled {
+    background-color: #666;
+    color: #ccc;
+    cursor: not-allowed;
+}
