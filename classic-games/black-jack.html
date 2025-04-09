@@ -1,122 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+
+  <!-- HEAD SECTION -->
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <!-- LINKS TO STYLING FOLDERS-->
+        <!-- CSS STLYE REFERENCE -->
         <link rel="stylesheet" href="/styles/indexstyle/index.css">
         <link rel="stylesheet" href="/styles/nav.css">
-        <link rel="stylesheet" href="/styles/globalstyling.css">
 
+        <!-- GOOGLE FONT INCLUSION -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,200..800;1,200..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-        <!-- SEARCH BAR ICON -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
-        <title>T1-Games</title>
+        <!-- PAGE TITLE -->
+        <title>T1 Games - Blackjack</title>
+    </head> 
 
-        <script src="/javascript/randombutton.js"></script>
+  <!-- BODY SECTION -->
+    <body style="background-color: white;">
+        <main>
+             <!--NAVIGATION BAR-->
+            <div class="navbar w-nav" style="background-color: black;">
+                <div class ="container">
+                    <div class="nav-menu-wrapper">
 
-    </head>
+              <!-- LOGO LINKING TO HOME PAGE -->
+                        <a href="/index.html" aria-current="page" class="brand w-nav-brand w--current" aria-label="Home">
+                            <img src="images/t1-games-logo.png" class="t1-games-logo">
+                        </a>
 
-<!-- ------------------------------------------------------------------------ -->
+              <!-- NAVIGATION LINKS -->
+                        <nav role="navigation" class="nav-menu w-nav-menu">
+                            <a href="index.html" class="nav-link w-nav-link w--current">Home</a>
+                            <a href="about-us.html" class="nav-link w-nav-link w--current">About Us</a>
+                            <a href="games-preview-page.html" class="nav-link w-nav-link w--current">Games</a>
+                        </nav>
 
-
- <!--
-TODOS: 
-
-
--->
-
-    <body>   
-
-<!-- ------------------------------------------------------------------------ -->
-
-<!-- NAVIGATION BAR -->
-<div class="outter-navcontainer">
-    <nav style="margin: auto; display: flex; justify-content: space-evenly; width: 850px;">
-        <div class="navbar-container" id="navBarContainer" style="padding: 5px 10px; height: 35px;">
-        
-            <div class="left-container" style="margin-left: 50px;">
-                <!-- WEBSITE TITLE NAME-->
-                <div>
-                    <a href="/index.html" class="navbar-logo">
-                        <img src="/img/t1-games-logo.png" style="width: 20px; margin-left: 20px;">
-                        <span class="navbar-logotext nav-hover"><b>T1 Games</b></span>
-                    </a>
+              <!-- LOGIN AND SIGN-UP BUTTONS-->
+                        <div class="navbar-button-wrapper">
+                            <div class="nav-desktop-button">
+                                <a data-wf-button--varient="button-outline" href="login.html" class="button-fill w-variant-61bc9a0d-6ff0-dc82-f504-e085311c6802 w-button">Login</a>
+                                <a data-wf-button--varient="button-white-sm" href="sign-up.html" class="button-fill w-variant-b343637e-6926-f2e8-3bf0-555073400c9e">Sign up</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <!-- GAME CONTENT SECTION -->
+            <div class="container-game">
+                <div class="game-header">
+                    <h1> Blackjack </h1>
 
-            <!-- RANDOM GAME SELECTOR -->
-            <span id="randomButton" class="nav-random nav-hover">Play a Random Game</span>
-            
-            <!-- RIGHT SIDE OF NAV CONTAINER-->
-            <div class="right-container" style="margin-right: 50px;">
+                    <!-- GAME AREA -->
+                    <section id="gamearea">
 
-                <!-- LOGIN & SIGN UP BUTTON -->
-                <div class="navbar-loginsignup nav-hover" style="margin-right: 25px; margin-top: 5px;">
-                    <a href="/login.html" class="signup-login nav-hover">Login</a>
-                    <span>/</span>
-                    <a href="/signup.html" class="signup-login nav-hover">Sign Up</a>
+                        <div id="dealer-area">
+                            <div id="dealer-name">
+                                <h1>Dealer</h1>
+                            </div>
+                            <div id="dealer-cards"></div>
+                            <div id="dealer-score"></div>
+                        </div>
+
+                        <div id="player-area">
+                            <div id="player-name">
+                                <h1>Player</h1>
+                            </div>
+                            <div id="player-cards"></div>
+                            <div id="player-score"></div>
+                        </div>
+                        
+                        <div id="options-area">
+                            <button id="start-game-button" onclick="begin()">
+                                <h1>Start Game</h1>
+                            </button>
+                        </div>
+                        
+                        <script src="../javascript/blackjack.js"></script>
+
+                    </section>
+
+                    <!-- HOW TO PLAY SECTION -->
+                    <section class="how-to-play-section">
+                        <div>
+                            <h1>How to Play</h1>
+                        </div>
+
+                        <!-- INSTRUCTION SECTION (TODO: INSERT THE INSTRUCTIONS HERE)-->
+                        <div class="how-to-play-instructions">
+                            <h2>Insert how to play intructions here</h2>
+                        </div>
+                    </section>
                 </div>
             </div>
-        </div>
-    </nav>
-</div>
-
-<!-- ------------------------------------------------------------------------ -->
-
-<!-- MAIN CONTENT OF WEBSITE-->
-<main>
-    <div style="margin: auto;">
-    <!-- GAME TITLE -->
-        <div class="game-title-tag" style="margin: auto; align-items: center;">
-            <h1 style="font-size: 2em; margin-top: 100px; margin-left: 250px;">Blackjack</h1>
-        </div>
-
-<!-- ------------------------------------------------------------------------ -->
-
-    <!-- MAIN CONTIANER FOR CONTENT -->
-
-    <!-- HOLDS SIDEBAR CONTENT AND GAME -->
-    <div style="display: flex; justify-content: space-between; height: 500px;">
-    
-<!-- ------------------------------------------------------------------------ -->
-
-    <!-- LEFT SIDEBAR CONTENT  -->
-    <div class="sidebar" style="margin-left: 250px;">
-
-    </div>
-
-<!-- ------------------------------------------------------------------------ -->
-
-    <!-- GAME CONTAINER CONTENT ** PUT GAME CONTENT HERE -->
-    <div>
-
-    </div>
-
- <!-- ------------------------------------------------------------------------ -->
-
-    <!-- RIGHT SIDEBAR CONTENT -->
-    <div class="sidebar" style="margin-right: 250px;">
-
-    </div>
-
-<!-- ------------------------------------------------------------------------ -->
-
-    </div>
-</main>
-            
-<!-- ------------------------------------------------------------------------ -->
-
-    <!-- FOOTER -->
-    <footer style="background-color: rgb(38, 38, 38); border-top: 5px solid #111; display: flex; justify-content: space-evenly; bottom: 0;">
-        <p>T1 GAMES</p>
-        <p>2025</p>
-        <p>Contact Us</p>
-    </footer>
-
-<!-- ------------------------------------------------------------------------ -->  
-
+        </main>
     </body>
 </html>
-    

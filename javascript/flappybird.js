@@ -159,3 +159,21 @@ function detectCollision(a, b) {
            a.y < b.y + b.height &&  //a's top left corner doesn't reach b's bottom left corner
            a.y + a.height > b.y;    //a's bottom left corner passes b's top left corner
 }
+
+function moveBird(e) {
+    if (e.code == "Space" || e.code == "ArrowUp" || e.code == "KeyX") {
+        // Prevent default action to stop scrolling
+        e.preventDefault();
+
+        //jump
+        velocityY = -6;
+
+        //reset game
+        if (gameOver) {
+            bird.y = birdY;
+            pipeArray = [];
+            score = 0;
+            gameOver = false;
+        }
+    }
+}

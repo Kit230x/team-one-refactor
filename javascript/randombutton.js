@@ -3,8 +3,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!button) {
         console.error("randomButton not found!");
-        return;  // Stop execution if button is missing
+        return;
     }
+
+    /**
+     * TODO: Needs to make something where it doesn't repeat a website 
+     *  */ 
 
     button.addEventListener("click", function () {
         const gamePages = [
