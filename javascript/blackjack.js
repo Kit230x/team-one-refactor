@@ -1,4 +1,6 @@
 async function begin() {
+    const gameArea = document.getElementById('gamearea');
+    gameArea.style.backgroundImage = "url('../../img/gameimg/blackjack/table-no-text.png')";
     let active = true;
     const deck = new Deck();
     const player = new Player();
@@ -298,34 +300,44 @@ function listenForDecision() {
 
 function displayBetOptions(player) {
     const optionsCont = document.getElementById("options-area");
-    optionsCont.innerHTML = `
-        <ul>
-            <li><button>10</button></li>
-            <li><button>25</button></li>
-            <li><button>50</button></li>
-            <li><button>100</button></li>
-        </ul>
-        <h2>Bank: ${player.bank}</h2>
+    optionsCont.innerHTML = "";
+    const options = document.createElement("div");
+    options.id = "options-list";
+
+    options.innerHTML = `
+        <button>10</button></li>
+        <button>25</button></li>
+        <button>50</button></li>
+        <button>100</button></li>
     `;
+    optionsCont.appendChild(options);
 }
 
 function displayGameState(dealer) {
 
     // Clear previous game state
     const playerHandCont = document.getElementById("player-cards");
+    playerHandCont.innerHTML = "";
     const playerScoreCont = document.getElementById("player-score");
 
     const dealerHandCont = document.getElementById("dealer-cards");
+    dealerHandCont.innerHTML = "";
     const dealerScoreCont = document.getElementById("dealer-score");
 
     const optionsCont = document.getElementById("options-area");
+    optionsCont.innerHTML = "";
+    const options = document.createElement("div");
+    options.id = "options-list";
 
+    const dealerHand = document.createElement("div");
+    dealerHand.id = "hand";
     // Display dealer's hand
-    dealerHandCont.innerHTML = `
-        <h2>Dealer's Hand</h2>
-        <p>${dealer.faceUp().map(card => `
-            [${card.value} of ${card.suit}]\n`).join(", ")}</p>
+    dealerHand.innerHTML = `
+        ${dealer.faceUp().map(card => {
+            return `<img src="../../img/gameimg/blackjack/cards/${card.value}${card.suit}.png"/>`;
+        }).join("")}
     `;
+    dealerHandCont.appendChild(dealerHand);
 
     dealerScoreCont.innerHTML = `
         <h2>Dealer's Score</h2>
@@ -333,12 +345,36 @@ function displayGameState(dealer) {
     `;
 
     // Display player's hand
-    playerHandCont.innerHTML = `
-        <h2>Your Hand</h2>
-        ${dealer.player.hands.map(hand => `
-            <p>${hand.map(card => `[${card.value} of ${card.suit}]\n`).join(", ")}</p>
-        `).join("\n")}
-    `;
+    if (dealer.player.hands.length === 1) {
+        console.log(dealer.player.hands[0]);
+        const playerHand = document.createElement("div");
+        playerHand.id = "hand";
+        playerHand.innerHTML = `
+            ${dealer.player.hands[0].map(card => {
+                return `<img src="../../img/gameimg/blackjack/cards/${card.value}${card.suit}.png"/>`;
+            }).join("")}
+        `;
+        playerHandCont.appendChild(playerHand);
+    } else {
+        const playerHand1 = document.createElement("div");
+        playerHand1.id = "hand";
+        const playerHand2 = document.createElement("div");
+        playerHand2.id = "hand";
+
+        playerHand1.innerHTML = `
+            ${dealer.player.hands[0].map(card => {
+                return `<img src="../../img/gameimg/blackjack/cards/${card.value}${card.suit}.png"/>`;
+            }).join("")}
+        `;
+
+        playerHand2.innerHTML = `
+            ${dealer.player.hands[1].map(card => {
+                return `<img src="../../img/gameimg/blackjack/cards/${card.value}${card.suit}.png"/>`;
+            }).join("")}
+        `;
+        playerHandCont.appendChild(playerHand1);
+        playerHandCont.appendChild(playerHand2);
+    }
 
     playerScoreCont.innerHTML = `
         <h2>Your Score</h2>
@@ -347,15 +383,13 @@ function displayGameState(dealer) {
         `).join("\n")}
     `;
 
-    optionsCont.innerHTML = `
-        <h2>Options</h2>
-        <ul>
-            <li><button>Hit</button></li>
-            <li><button>Stand</button></li>
-            <li><button>Double</button></li>
-            <li><button>Split</button></li>
-        </ul>
+    options.innerHTML = `
+        <button>Hit</button>
+        <button>Stand</button>
+        <button>Double</button>
+        <button>Split</button>
     `;
+    optionsCont.appendChild(options);
 }
 
 function sleep(ms) {

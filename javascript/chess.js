@@ -40,7 +40,6 @@ function insertImage() {
     })
 }
 
-
 //Coloring the board
 
 function coloring() {

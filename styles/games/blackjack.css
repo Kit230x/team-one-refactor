@@ -1,0 +1,94 @@
+#gamearea {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../img/gameimg/blackjack/table-with-text.png');
+    background-size: cover;
+    background-size: 100%;
+    background-position: center bottom;
+}
+
+#start-game-button {
+    position: absolute;
+    bottom: 125px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    font-size: 24px;
+    text-transform: uppercase;
+    color: #f3e4b0;
+    background: transparent;
+    border: 2px solid #f3e4b0;
+    padding: 10px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+}
+  
+#start-game-button:hover {
+background: #f3e4b0;
+color: #0b3d10; /* dark green table color or near black */
+}
+
+#dealer-cards {
+    position: absolute;
+    justify-content: center;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0px;
+}
+
+#player-cards {
+    position: absolute;
+    justify-content: center;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0px;
+}
+
+#hand img{
+    width: 80px;
+    height: auto;
+    margin-right: 8px;
+    border-radius: 5px;
+    margin-left: -60px;
+    z-index: 1;
+}
+
+#hand img:first-child {
+    margin-left: 0;
+}
+
+#options-list {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+  
+#options-list button {
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #f3e4b0;
+    background: transparent;
+    border: 2px solid #f3e4b0;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+}
+  
+#options-list button:hover {
+    background: #f3e4b0;
+    color: #0b3d10;
+}
