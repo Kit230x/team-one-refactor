@@ -89,22 +89,23 @@ function getCounterChoice(playerChoice) {
         case "scissors": return "rock";
     }
 }
-
+// playerDisplay.textContent = `PLAYER 1: ${playerChoice}`;
 // Hotseat mode handler
 function handleHotseatPlay(playerChoice) {
     if (hotseatTurn === "Player 1") {
-        playerDisplay.textContent = `PLAYER 1: ${playerChoice}`;
+        playerDisplay.textContent = `PLAYER 1: Secret...`;
         resultDisplay.textContent = "Hotseat mode: Player 2's turn";
         hotseatTurn = "Player 2";
-        playerDisplay.setAttribute("data-p1-choice", playerChoice);
+        playerDisplay.setAttribute("playerOneChoice", playerChoice);
     } else {
-        const p1Choice = playerDisplay.getAttribute("data-p1-choice");
+        
+        const p1Choice = playerDisplay.getAttribute("playerOneChoice");
         const p2Choice = playerChoice;
-
+        playerDisplay.textContent = `PLAYER 1: ${p1Choice}`;
         computerDisplay.textContent = `PLAYER 2: ${p2Choice}`;
 
         let result = "";
-
+        
         if (p1Choice === p2Choice) {
             result = "IT'S A TIE!";
         } else {
