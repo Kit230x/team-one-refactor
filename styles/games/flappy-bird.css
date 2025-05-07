@@ -1,9 +1,24 @@
+
+
+/* ------------------------------------------------ */
+
+/* BOARD FOR GAME */
 #board {
     background-image: url("../arcade-games/flappy-bird-img/flappybirdbg.png");
     filter: brightness(100%) !important;
     z-index: 1000;
 }
 
+/* ------------------------------------------------ */
+
+/* GAME TITLE */ 
+.game-title-tag {
+    margin: auto; 
+    display: inline-block;
+}
+
+
+/* MAIN CONTAINER, ~CONTAINERS BACKGROUND, 3 CONTAINERS */
 .main-container {
     background-image: url("../arcade-games/flappy-bird-img/background.png");
     filter: brightness(100%);
@@ -11,4 +26,25 @@
     z-index: 100;
     margin: 50px 0 50px 0;
     border: 10px solid black;
+    display: flex; 
+    justify-content: space-between;
 }
+
+.sidebar {
+    display: flex;
+    width: 200px;
+}
+
+.game-container {
+    display: flex;
+
+}
+
+/*
+Notes
+
+
+
+
+
+*/

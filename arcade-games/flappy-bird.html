@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- LINKS TO STYLING FOLDERS-->
-        <link rel="stylesheet" href="/styles/indexstyle/index.css">
         <link rel="stylesheet" href="/styles/nav.css">
         <link rel="stylesheet" href="/styles/globalstyling.css">
         <script src="/javascript/flappybird.js"></script>
@@ -17,17 +16,48 @@
         <style>
             #board {
                 background-image: url("flappy-bird-img/flappybirdbg.png");
-                filter: brightness(100%) !important;
+                filter: brightness(100%);
                 z-index: 1000;
             }
 
             .main-container {
                 background-image: url("flappy-bird-img/background.png");
-                filter: brightness(100%);
-                width: 1200;
+                width: 100%;
+                height: 850px;
                 z-index: 100;
                 margin: 50px 0 50px 0;
                 border: 10px solid black;
+                
+            }
+
+            .background {
+                overflow-x: visible;
+                width: 100%;
+                max-width: 1200px;
+            }
+
+            .sidebar {
+                display: flex;
+                width: 200px;
+            }
+
+            /* GLOBAL STYLING */
+            * {
+                font-family: sans-serif;
+                color: var(--text-color);
+                box-sizing: border-box;
+            }
+
+            body {
+                background-color: var(--background-color);
+                margin: 0;
+                padding: 0;
+                overflow-x: hidden;
+                max-width: 100vw;
+            }
+
+            html {
+                overflow-x: hidden;
             }
 
         </style>
@@ -87,38 +117,36 @@ TODOS:
 <!-- MAIN CONTENT OF WEBSITE-->
 <main>
     <div style="margin: auto;">
+
     <!-- GAME TITLE -->
-        <div class="game-title-tag" style="margin: auto; align-items: center;">
+        <div class="game-title-tag">
             <h1 style="font-size: 2em; margin-top: 100px; margin-left: 250px;">Flappy Bird</h1>
         </div>
 
 <!-- ------------------------------------------------------------------------ -->
 
     <!-- MAIN CONTIANER FOR CONTENT -->
-
     <div class="main-container">
-        <div style="display: flex; justify-content: space-between; height: 850px; width: 500px;">
+        <div style="display: flex; justify-content: space-between; height: 500px;">
     
 <!-- ------------------------------------------------------------------------ -->
 
             <!-- LEFT SIDEBAR CONTENT  -->
-            <div class="sidebar" style="margin-left: 250px;">
+            <div class="sidebar">
 
             </div>
 
 <!-- ------------------------------------------------------------------------ -->
 
-                <!-- GAME CONTAINER CONTENT ** PUT GAME CONTENT HERE -->
-                <div>
-                    <canvas id="board" style="margin-left: 200px; border: 20px solid black; border-radius: 10px; margin-top: 100px;"></canvas>
-                </div>
+            <!-- GAME CONTAINER CONTENT ** PUT GAME CONTENT HERE -->
+            <div class="game-container" id="board" style="border: 20px solid black; border-radius: 10px; margin-top: 100px;"></div>
 
  <!-- ------------------------------------------------------------------------ -->
 
             <!-- RIGHT SIDEBAR CONTENT -->
-            <div class="sidebar" style="align-items: center;">
+            <section class="sidebar" style="align-items: center;">
 
-            </div>
+            </section>
 
 <!-- ------------------------------------------------------------------------ -->
         </div>
