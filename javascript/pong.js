@@ -82,14 +82,19 @@ checkCollision() {
         createBall();
         return;
     }
+
     if(ballX <= (paddle1.x + paddle1.width + ballRadius)) {
         if(ballY > paddle1.y && ballY < paddle1.y + paddle1.height) {
+            ballX = (paddle1.x + paddle1.width) + ballRadius; 
             ballXDirection *= -1;
+            ballSpeed +=1;
         }
     }
     if(ballX >= (paddle2.x + paddle2.width + ballRadius)) {
         if(ballY > paddle2.y && ballY < paddle2.y + paddle2.height) {
+            ballX = paddle2.x - ballRadius;
             ballXDirection *= -1;
+            ballSpeed += 1
         }
     }
 };
@@ -166,5 +171,23 @@ function changeDirection() {
     }
 };
 
-function updateScore(){};
-function resetGame(){};
+function updateScore(){
+    scoreText.textContent = `${plauer1Score} : ${player2Score}`;
+};
+
+function resetGame(){
+    player1Score = 0;
+    player2Score = 0;
+    paddle1 = {
+        width: 25,
+        height: 100,
+        x: 0,
+        y: 0
+    }
+    let paddle2 = {
+        width: 25,
+        height: 100,
+        x: gameWidth - 25,
+        y: gameHeight - 100
+    }
+};
