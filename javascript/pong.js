@@ -47,13 +47,42 @@ function gameStart(){
 
 function nextTick(){
     intervalID = setTimeout(() => {
-        clearBoard();
-        drawPaddles();
-        moveBall();
-        drawBall(ballX, ballY);
-        checkCollision();
         nextTick();
     }, 10)
+};
+
+clearBoard();
+drawPaddles();
+moveBall();
+drawBall(ballX, ballY) {
+    ctx.fillStyle = ballColor;
+    ctx.strokeStyle = ballBorderColor;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(ballX, ballY, ballRadius, 0, 2 * Math.PI);
+    ctx.fill();
+};
+
+checkCollision(){
+    if(ballY <= 0 + ballRadius) {
+        ballYDirection *= -1;
+    }
+    if(ballY >= gameHeight - ballRadius) {
+        ballYDirection *= -1;
+    }
+    if(ballX <= 0) {
+        player2Score += 1;
+        updateScore();
+        createBall();
+        return;
+    }
+    if(ballX >= gameWidth) {
+        player1Score += 1;
+        updateScore();
+        createBall();
+        return;
+    }
+
 };
 
 function clearBoard(){
@@ -74,8 +103,27 @@ function drawPaddles(ballX, ballY){
 
 };
 
-function createBall(){};
-function moveBall(){};
+function createBall(){
+    ballSpped = 1;
+    if(Math.round(Math.random()) == 1) {
+        ballXDirection = 1;
+    } else {
+        ballXDirection = -1;
+    }
+    if(Math.round(Math.random()) == 1) {
+        ballYDrection = 1;
+    } else {
+        ballYDirection = -1;
+    }
+    ballX = gameWidth / 2;
+    ballY = gameHeight / 2;
+    drawBall(ballX, ballY);
+
+};
+function moveBall(){
+    ballX += (ballSpeed * ballXDirection);
+    ballY += (ballSpeed * ballYDirection);
+};
 function drawBall(){};
 function checkCollision(){};
 function changeDirection() {
@@ -94,6 +142,16 @@ function changeDirection() {
         case(paddle1Down):
             if(paddle1.u < gameHeight - paddle1.height) {
                 paddle1.y += paddleSpeed;
+            }
+            break;
+        case(paddle2Up):
+            if(paddle2.y > 0) {
+                paddle2.y -= paddleSpeed;
+            }
+            break;
+        case(paddle2Down):
+            if(paddle2.u < gameHeight - paddle2.height) {
+                paddle2.y += paddleSpeed;
             }
             break;
     }
