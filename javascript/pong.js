@@ -63,7 +63,7 @@ drawBall(ballX, ballY) {
     ctx.fill();
 };
 
-checkCollision(){
+checkCollision() {
     if(ballY <= 0 + ballRadius) {
         ballYDirection *= -1;
     }
@@ -82,7 +82,16 @@ checkCollision(){
         createBall();
         return;
     }
-
+    if(ballX <= (paddle1.x + paddle1.width + ballRadius)) {
+        if(ballY > paddle1.y && ballY < paddle1.y + paddle1.height) {
+            ballXDirection *= -1;
+        }
+    }
+    if(ballX >= (paddle2.x + paddle2.width + ballRadius)) {
+        if(ballY > paddle2.y && ballY < paddle2.y + paddle2.height) {
+            ballXDirection *= -1;
+        }
+    }
 };
 
 function clearBoard(){
