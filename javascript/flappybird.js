@@ -106,6 +106,7 @@ function update() {
 
     if (gameOver) {
         context.fillText("GAME OVER", 5, 90);
+        saveGameSession('flappy-bird', score);
     }
 }
 

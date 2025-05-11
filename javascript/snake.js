@@ -164,6 +164,7 @@
     gameOverMessage.innerText = message;
     gameOverMessage.style.display = "block";
     restartBtn.disabled = false;
+    saveGameSession('minesweeper', score);
   }
 
   window.onload = function () {

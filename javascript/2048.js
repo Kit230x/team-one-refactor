@@ -94,7 +94,10 @@ document.addEventListener("keyup", (e) => {
 
     if (moved) {
         setTimeout(setTwo, 200);
-        document.getElementById("score").innerText = score;
+        const scoreDisplay2048 = document.getElementById('score');
+        if (scoreDisplay2048) {
+            scoreDisplay2048.innerText = score;
+        }
         saveGameSession('2048-game', score); // Save score after a valid move
         if (!canMove()) {
             gameOver();
@@ -267,20 +270,25 @@ function canMove() {
     return false;
 }
 
-
-
 function gameOver() {
     alert(`Game Over! Your final score is ${score}`);
-    // Optionally show a restart button here
     let restartButton = document.getElementById("restart-button");
     if (!restartButton) {
         restartButton = document.createElement("button");
         restartButton.id = "restart-button";
         restartButton.innerText = "Restart Game";
-        restartButton.onclick = setGame;
-        document.getElementById("board-container").appendChild(restartButton); // Assuming you have a container for the board and button
+        restartButton.onclick = () => { // Changed onclick to a function that reloads the page
+            window.location.reload();
+        };
+        const boardContainer = document.getElementById("board-container");
+        if (boardContainer) {
+            boardContainer.appendChild(restartButton);
+        }
     } else {
         restartButton.style.display = "block";
+        restartButton.onclick = () => { // Ensure onclick is set even if button exists
+            window.location.reload();
+        };
     }
     saveGameSession('2048-game', score); // Save the final score on game over
 }
