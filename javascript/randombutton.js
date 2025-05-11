@@ -12,8 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     button.addEventListener("click", function () {
         const gamePages = [
-            "/arcade-games/breaker-ball.html",
-            "/arcade-games/candy-crush.html",
+            "/retro-games/breakout.html",
             "/arcade-games/flappy-bird.html",
             "/classic-games/black-jack.html",
             "/classic-games/rock-paper-scissors.html",
