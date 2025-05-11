@@ -4,6 +4,13 @@
     margin: 20px auto;
     display: block;
 }
+#board {
+    background-color: #7f9f60;
+    display: block;
+    margin: auto;
+    border-radius: 10px;
+    transition: box-shadow 0.2s ease;
+}
   
 .game-ui {
     margin-top: 20px;
