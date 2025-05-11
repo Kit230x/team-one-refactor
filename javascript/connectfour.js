@@ -15,6 +15,10 @@ window.onload = function() {
     startGame();
 }
 
+function reload() {
+    location.reload();
+}
+
 function startGame() {
     board = [];
     currentColumns = [5, 5, 5, 5, 5, 5, 5]
