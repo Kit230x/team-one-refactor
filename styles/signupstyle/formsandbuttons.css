@@ -1,30 +1,26 @@
-
-
-/* ------------------------------------------------ */
-
-/* FORM INPUT STYLING */
 form > div {
     width: 100%;
     display: flex;
-    justify-content: center;
+    align-items: center; /* Vertically align label and input */
+    justify-content: flex-start;
+    margin-bottom: 10px;
 }
 
 form label {
     flex-shrink: 0;
     height: 50px;
     width: 50px;
-    background-color:var(--accent-color);
+    background-color: var(--accent-color);
     fill: white;
     color: white;
-    align-items: center;
-    justify-content: center;
+    display: flex; /* Make label a flex container */
+    align-items: center; /* Center SVG vertically */
+    justify-content: center; /* Center SVG horizontally */
     border-radius: 10px 0 0 10px;
-    display: flex;
     font-size: 1.5rem;
     font-weight: 500;
 }
 
-/* USER TYPING INTERFACE */
 form input {
     box-sizing: border-box;
     flex-grow: 1;
@@ -35,7 +31,10 @@ form input {
     border-left: none;
     background-color: white;
     transition: 150ms ease;
+    height: 50px; /* Match label height */
 }
+
+/* ------------------------------------------------ */
 
 form input:hover {
     border-color: var(--accent-color);
@@ -54,19 +53,6 @@ form input::placeholder {
     color: var(--text-color);
 }
 
-
-/* BUTTON FORMAT*/
-form button {
-    margin-top: 10px;
-    border: none;
-    border-radius: 1000px;
-    padding: .85em 4em;
-    background-color: var(--accent-color);
-    font-weight: 600px;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: 150ms ease;
-}
 
 form button:hover {
     background-color: var(--text-color);
@@ -91,46 +77,11 @@ form button:focus {
     cursor: pointer;
 }
 
-a {
-    text-decoration: none;
-    color: var(--accent-color);
-}
-
 @media(max-width: 1100px) {
     .container {
         width: min(600px, 100%);
         border-radius: 0;
     }
-}
-
-/* ------------------------------------------------ */
-
-/* AUTHENTICATION */
-.auth-container {
-    display:inline-block; 
-    border: 1px solid rgb(53, 53, 53); 
-    padding: 10px 50px 10px 50px; 
-    border-radius: 15px;
-}
-
-.text-lg {
-    color: white;
-    font-weight: 700;
-}
-
-/* ------------------------------------------------ */
-
-/* INCORRECT INPUT SIGN UP*/
-form div.incorrect label{
-    background-color: #f06272;
-}
-
-form div.incorrect input {
-    border-color: #f06272;
-}
-
-#error-message {
-    color: #f06272;
 }
 
 /* ------------------------------------------------ */
