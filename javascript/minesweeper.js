@@ -25,7 +25,7 @@ radioButtons.forEach(radio => {
   setDifficulty("easy");
 
   // Handle restart
-  restartBtn.addEventListener("click", () => {
+  restartButton.addEventListener("click", () => {
     createBoard();
   });
 

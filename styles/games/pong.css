@@ -19,3 +19,74 @@
     border-radius: 15px;
     cursor: pointer;
 }
+.styled-button {
+  min-height: 50px;
+  min-width: 100px;
+  background-color: grey;
+  background-image: linear-gradient(50deg, #362c2c, #888888);
+  color: white;
+  text-align: center;
+  padding: 15px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.styled-button:hover {
+  transform: scale(1.05);
+}
+
+.styled-button:active {
+  transform: scale(0.98);
+  background-color: #004494;
+}
+
+.gameScore {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.styled-button {
+  min-height: 50px;
+  min-width: 100px;
+  background-color: grey;
+  background-image: linear-gradient(50deg, #362c2c, #888888);
+  color: white;
+  text-align: center;
+  padding: 15px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.styled-button:hover {
+  transform: scale(1.05);
+}
+
+.styled-button:active {
+  transform: scale(0.98);
+  background-color: #004494;
+}
+
+
+.styled-button:hover {
+  transform: scale(1.05);
+}
+
+.styled-button:active {
+  transform: scale(0.98);
+  background-color: #004494;
+}
+
+.gameScore {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}

@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="/styles/indexstyle/index.css">
         <link rel="stylesheet" href="/styles/nav.css">
         <link rel="stylesheet" href="/styles/globalstyling.css">
+        <link rel="stylesheet" href="/styles/games/pong.css"
 
         <!-- FAVICON-->
         <link rel=“icon” type=“image” href=“img/t1-games-logo.png>
@@ -17,7 +18,7 @@
         <title>T1-Games</title>
 
         <script src="/javascript/randombutton.js"></script>
-        <script src="/javascript/pong.js"></script>
+        <script src="/javascript/pong.js" defer></script>
 
         <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
@@ -108,9 +109,10 @@ TODOS:
     <div id="gameContainer">
 
         <canvas id="gameBoard" width="500" height="500"></canvas>
-        <div id="scoreText" id="gameScore">0 : 0</div>
-            <button id="resetBtn">Reset</button>
+        <div id="scoreText" class="gameScore">0 : 0</div>
+        <button id="resetBtn" class="styled-button">Reset</button>
     </div>
+    
 
  <!-- ------------------------------------------------------------------------ -->
 

@@ -25,14 +25,14 @@ let paddle1 = {
     width: 25,
     height: 100,
     x: 0,
-    y: 0
+    y: gameHeight/2 -50
 };
 
 let paddle2 = { 
     width: 25,
     height: 100,
     x: gameWidth - 25,
-    y: gameHeight - 100
+    y: gameHeight /2 -50
 };
 
 window.addEventListener("keydown", changeDirection);
@@ -47,23 +47,29 @@ function gameStart(){
 
 function nextTick(){
     intervalID = setTimeout(() => {
+        clearBoard();
+        drawPaddles();
+        moveBall();
+        drawBall(ballX, ballY);
+        checkCollision();
         nextTick();
-    }, 10)
-};
+    }, 10);
+}
 
 clearBoard();
 drawPaddles();
 moveBall();
-drawBall(ballX, ballY) {
+function drawBall(ballX, ballY) {
     ctx.fillStyle = ballColor;
     ctx.strokeStyle = ballBorderColor;
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.arc(ballX, ballY, ballRadius, 0, 2 * Math.PI);
     ctx.fill();
+    ctx.stroke();
 };
 
-checkCollision() {
+function checkCollision() {
     if(ballY <= 0 + ballRadius) {
         ballYDirection *= -1;
     }
@@ -90,13 +96,14 @@ checkCollision() {
             ballSpeed +=1;
         }
     }
-    if(ballX >= (paddle2.x + paddle2.width + ballRadius)) {
+    if(ballX >= (paddle2.x - ballRadius)) {
         if(ballY > paddle2.y && ballY < paddle2.y + paddle2.height) {
             ballX = paddle2.x - ballRadius;
             ballXDirection *= -1;
-            ballSpeed += 1
-        }
+            ballSpeed += 1;
     }
+}
+
 };
 
 function clearBoard(){
@@ -105,7 +112,7 @@ function clearBoard(){
 };
 
 function drawPaddles(ballX, ballY){
-    ctx.strokeStyle = paddleBoarder;
+    ctx.strokeStyle = paddleBorder;
 
     ctx.fillStyle = paddle1Color;
     ctx.fillRect(paddle1.x, paddle1.y, paddle1.width, paddle1.height);
@@ -118,14 +125,14 @@ function drawPaddles(ballX, ballY){
 };
 
 function createBall(){
-    ballSpped = 1;
+    ballSpeed = 1;
     if(Math.round(Math.random()) == 1) {
         ballXDirection = 1;
     } else {
         ballXDirection = -1;
     }
     if(Math.round(Math.random()) == 1) {
-        ballYDrection = 1;
+        ballYDirection = 1;
     } else {
         ballYDirection = -1;
     }
@@ -138,8 +145,7 @@ function moveBall(){
     ballX += (ballSpeed * ballXDirection);
     ballY += (ballSpeed * ballYDirection);
 };
-function drawBall(){};
-function checkCollision(){};
+
 function changeDirection() {
     const keyPressed = event.keyCode;
     const paddleUp = 87;
@@ -148,13 +154,13 @@ function changeDirection() {
     const paddle2Down = 40;
 
     switch(keyPressed) {
-        case(paddle1Up):
+        case(paddleUp):
             if(paddle1.y > 0) {
                 paddle1.y -= paddleSpeed;
             }
             break;
-        case(paddle1Down):
-            if(paddle1.u < gameHeight - paddle1.height) {
+        case(paddleDown):
+            if(paddle1.y < gameHeight - paddle1.height) {
                 paddle1.y += paddleSpeed;
             }
             break;
@@ -164,7 +170,7 @@ function changeDirection() {
             }
             break;
         case(paddle2Down):
-            if(paddle2.u < gameHeight - paddle2.height) {
+            if(paddle2.y < gameHeight - paddle2.height) {
                 paddle2.y += paddleSpeed;
             }
             break;
@@ -172,22 +178,40 @@ function changeDirection() {
 };
 
 function updateScore(){
-    scoreText.textContent = `${plauer1Score} : ${player2Score}`;
+    scoreText.textContent = `${player1Score} : ${player2Score}`;
 };
 
-function resetGame(){
+function resetGame() {
+   
     player1Score = 0;
     player2Score = 0;
+    updateScore();
+
+    
     paddle1 = {
         width: 25,
         height: 100,
         x: 0,
-        y: 0
-    }
-    let paddle2 = {
+        y: (gameHeight - 100) / 2 
+    };
+    paddle2 = {
         width: 25,
         height: 100,
         x: gameWidth - 25,
-        y: gameHeight - 100
-    }
-};
+        y: (gameHeight - 100) / 2 
+    };
+
+   
+    ballX = gameWidth / 2;
+    ballY = gameHeight / 2;
+    ballXDirection = Math.random() < 0.5 ? 1 : -1; 
+    ballYDirection = Math.random() < 0.5 ? 1 : -1;  
+
+    
+    ballSpeed = 1;
+
+    
+    clearBoard();
+    drawPaddles();
+    drawBall(ballX, ballY);
+}
