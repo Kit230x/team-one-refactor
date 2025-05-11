@@ -31,7 +31,7 @@ window.onload = function() {
       }
       // create_title() is used to create the title
       create_title(){
-        // This is the title creator. 🎉
+        // This is the title creator.
         let title_container = document.createElement('div')
         title_container.setAttribute('id', 'title_container')
         const title_inner_container = document.createElement('div')
