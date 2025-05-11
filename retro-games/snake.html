@@ -18,13 +18,6 @@
         <script src="/javascript/randombutton.js"></script>
         <script src="/javascript/snake.js" defer></script>
 
-        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
-
-        <script src="/javascript/config.js"></script>
-        <script src="/javascript/auth-state.js"></script>
-
         <style>
         #board {
             background-color: #7f9f60;
@@ -50,47 +43,42 @@ TODOS:
 
 <!-- ------------------------------------------------------------------------ -->
 
-        <!-- START*** NAVIGATION BAR -->
-        <div class="outter-navcontainer">
-            <nav>
-                <div class="navbar-container" id="navBarContainer">
+<!-- NAVIGATION BAR -->
+<div class="outter-navcontainer">
+    <nav style="margin: auto; display: flex; justify-content: space-evenly; width: 850px;">
+        <div class="navbar-container" id="navBarContainer" style="padding: 5px 10px; height: 35px;">
         
-                    <div class="left-container">
-                        <div>
-                            <a href="/index.html" class="navbar-logo">
-                                <img src="/img/t1-games-logo.png" style="width: 20px; margin-left: 20px;">
-                                <span class="navbar-logotext nav-hover"><b>T1 Games</b></span>
-                            </a>
-                        </div>
-        
-                        <span id="randomButton" class="nav-random nav-hover">Play a Random Game</span>
-                    </div>
-        
-                    <div class="right-container">
-                        <div style="width: 400px;">
-                            <form action="#">
-                                <div class="search nav-hover">
-                                    <span class="material-symbols-outlined search-icon">search</span>
-                                    <input class="search-input" type="text" placeholder="Search for Games" name="search" id="gameSearchInput">
-                                </div>
-                            </form>
-                        </div>
-        
-                        <div class="navbar-loginsignup nav-hover">
-                            <a href="signup.html" class="signup-login nav-hover">Login & Signup</a>
-                        </div>
-                    </div>
+            <div class="left-container" style="margin-left: 50px;">
+                <!-- WEBSITE TITLE NAME-->
+                <div>
+                    <a href="/index.html" class="navbar-logo">
+                        <img src="/img/t1-games-logo.png" style="width: 20px; margin-left: 20px;">
+                        <span class="navbar-logotext nav-hover"><b>T1 Games</b></span>
+                    </a>
                 </div>
-            </nav>
+            </div>
+
+            <!-- RANDOM GAME SELECTOR -->
+            <span id="randomButton" class="nav-random nav-hover">Play a Random Game</span>
+            
+            <!-- RIGHT SIDE OF NAV CONTAINER-->
+            <div class="right-container" style="margin-right: 50px;">
+
+                <!-- LOGIN & SIGN UP BUTTON -->
+                <div class="navbar-loginsignup nav-hover" style="margin-right: 25px; margin-top: 5px;">
+                    <a href="/login.html" class="signup-login nav-hover">Login</a>
+                    <span>/</span>
+                    <a href="/signup.html" class="signup-login nav-hover">Sign Up</a>
+                </div>
+            </div>
         </div>
-        <!-- END*** NAV BAR -->
+    </nav>
+</div>
 
 <!-- ------------------------------------------------------------------------ -->
 
 <!-- MAIN CONTENT OF WEBSITE-->
 <main>
-    <div id="searchResultsContainer" style="position: absolute; top: 60px; left: 50%; transform: translateX(-50%); background-color: rgba(0, 0, 0, 0.8); color: white; padding: 10px; border-radius: 5px; z-index: 10; display: none; width: 80%;">
-    </div>
     <div style="margin: auto;">
     <!-- GAME TITLE -->
         <div class="game-title-tag" style="margin: auto; align-items: center;">
@@ -116,16 +104,26 @@ TODOS:
     <!-- GAME CONTAINER CONTENT -->
     <div id="boardContainer">
         <canvas id="board"></canvas>
+      
         <div class="game-ui">
-            <div id="gameOverMessage"></div>
-            <div id="scoreDisplay" id="gameScore">Score: 0</div>
-            <button id="startBtn">Start Game</button>
-            <button id="restartBtn" disabled>Restart</button>
-            <div id="instructions">
-            Use ← ↑ → ↓ keys to control the snake. Eat the food to grow. Don't hit walls or yourself!
-            </div>    
+          <div id="gameOverMessage"></div>
+          <div id="scoreDisplay">Score: 0</div>
+      
+          <label for="difficulty">Difficulty:</label>
+          <select id="difficulty">
+            <option value="easy">Easy (Fixed Speed)</option>
+            <option value="hard">Hard (Speed Up)</option>
+          </select>
+      
+          <button id="startBtn">Start Game</button>
+          <button id="restartBtn" disabled>Restart</button>
+      
+          <div id="instructions">
+            Use W A S D keys to control the snake. Eat the food to grow. Don't hit walls or yourself!
+          </div>
         </div>
       </div>
+      
     
       
   
@@ -150,8 +148,6 @@ TODOS:
         <p>2025</p>
         <p>Contact Us</p>
     </footer>
-
-    <script src="/javascript/search-gamepages.js"></script>
 
 <!-- ------------------------------------------------------------------------ -->  
 
