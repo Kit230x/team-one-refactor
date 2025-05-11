@@ -2,8 +2,8 @@ console.log('Auth state listener running...');
 
 firebase.auth().onAuthStateChanged(function(user) {
   const loginSignupDivs = document.querySelectorAll('.navbar-loginsignup');
-  const randomButtons = document.querySelectorAll('#randomButton');
-  const topRightContainer = document.querySelector('.right-container'); // Assuming your right-container is where you want the button
+  const randomButton = document.getElementById('randomButton');
+  const topRightContainer = document.querySelector('.right-container'); 
 
   loginSignupDivs.forEach(loginSignupDiv => {
     loginSignupDiv.innerHTML = ''; // Clear existing content
@@ -27,9 +27,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     } else {
       console.log('User is logged out.');
       loginSignupDiv.innerHTML = `
-        <a href="login.html" class="signup-login nav-hover">Login</a>
-        <span>/</span>
-        <a href="signup.html" class="signup-login nav-hover">Sign Up</a>
+        <a href="signup.html" class="signup-login nav-hover">Login & Signup</a>
       `;
     }
   });

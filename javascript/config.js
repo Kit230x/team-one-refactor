@@ -19,43 +19,46 @@ const firebaseConfig = {
    const database = firebase.database();
  
    function register () {
-     // Get all our input fields
-     let email = document.getElementById('email').value;
-     let password = document.getElementById('password').value;
-     let full_name = document.getElementById('full_name').value;
+    // Get all our input fields
+    let email = document.getElementById('email').value;
+    let password = document.getElementById('password').value;
+    let full_name = document.getElementById('full_name').value;
  
-     // Validate input fields
-     if (!validate_email(email) || !validate_password(password)) {
-       alert('Email or Password field invalid');
-       return;
-       // Don't continue running the code
-     }
-     if (!validate_field(full_name)) {
-       alert('Username field is empty');
-       return;
-     }
+    // Validate input fields
+    if (!validate_email(email) || !validate_password(password)) {
+      alert('Email or Password field invalid');
+      return;
+      // Don't continue running the code
+    }
+    if (!validate_field(full_name)) {
+      alert('Username field is empty');
+      return;
+    }
  
-     // Move on with Auth
-     auth.createUserWithEmailAndPassword(email, password)
-     .then(function() {
-       // Declare user variable
-       const user = auth.currentUser;
- 
-       // Add this user to Firebase Database
-       const database_ref = database.ref('users/' + user.uid);
- 
-       // Create User data
-       const user_data = {
-         email: email,
-         full_name: full_name,
-         last_login: Date.now()
-       };
+  // Move on with Auth
+  auth.createUserWithEmailAndPassword(email, password)
+  .then(function() {
+    // Declare user variable
+    const user = auth.currentUser;
+
+    // Add this user to Firebase Database
+    const database_ref = database.ref('users/' + user.uid);
+
+    // Create User data
+    const user_data = {
+      email: email,
+      full_name: full_name,
+      last_login: Date.now()
+    };
+
  
        // Push to Firebase Database
        database_ref.set(user_data);
  
        // Done
        alert('User Created');
+       window.location.href = 'index.html';
+
      })
      .catch(function(error) {
        // Firebase will use this to alert of its errors
@@ -69,36 +72,36 @@ const firebaseConfig = {
     // Get all our input fields
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
-
+  
     // Validate input fields
     if (!validate_email(email) || !validate_password(password)) {
       alert('Email or Password field is invalid');
       return;
       // Don't continue running the code
     }
-
+  
      auth.signInWithEmailAndPassword(email, password)
      .then(function() {
        // Declare user variable
        const user = auth.currentUser;
-
+  
        // Add this user to Firebase Database
        const database_ref = database.ref('users/' + user.uid);
-
+  
        // Create User data
        const user_data = {
          last_login: Date.now()
        };
-
+  
        // Push to Firebase Database
        database_ref.update(user_data);
-
+  
        // Done
        alert('User Logged in');
-
+  
        // Redirect to the homepage after successful login
        window.location.href = 'index.html';
-
+  
      })
      .catch(function(error) {
        // Firebase will use this to alert of its errors
