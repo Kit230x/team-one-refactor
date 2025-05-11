@@ -17,24 +17,24 @@ let bird = {
     y : birdY,
     width : birdWidth,
     height : birdHeight
-}
+}  
 
 // PIPES 
-let pipeArray = [];
+let pipeArray = [];  
 let pipeWidth = 64; //width/height ratio = 384/3072 = 1/8
 let pipeHeight = 512;
 let pipeX = boardWidth;
-let pipeY = 0;
-
+let pipeY = 0; 
+ 
 let topPipeImg;
 let bottomPipeImg;
 
 // PHYSICS
-let velocityX = -2; // MOVEMENT OF PIPE
-let velocityY = 0; // JUMP SPEED 
-let gravity = 0.4;
+let velocityX = -1; // MOVEMENT OF PIPE
+let velocityY = -0; // JUMP SPEED 
+let gravity = 0.1 ;
 
-let gameOver = false;
+let gameOver = false;  
 let score = 0;
 
 window.onload = function() {
@@ -139,12 +139,14 @@ function placePipes() {
     pipeArray.push(bottomPipe);
 }
 
-function moveBird(e) {
-    if (e.code == "Space" || e.code == "ArrowUp" || e.code == "KeyX") {
-        //jump
-        velocityY = -6;
+function moveBird(e) {  
+    if (e.code == "Space" || e.code == "ArrowUp" || e.code == "   KeyX") {
+        e.preventDefault(); // Prevent default scrolling behavior
 
-        //reset game
+        // jump
+        velocityY = -4;
+
+        // reset game
         if (gameOver) {
             bird.y = birdY;
             pipeArray = [];
@@ -153,6 +155,7 @@ function moveBird(e) {
         }
     }
 }
+
 
 function detectCollision(a, b) {
     return a.x < b.x + b.width &&   //a's top left corner doesn't reach b's top right corner
@@ -161,20 +164,3 @@ function detectCollision(a, b) {
            a.y + a.height > b.y;    //a's bottom left corner passes b's top left corner
 }
 
-function moveBird(e) {
-    if (e.code == "Space" || e.code == "ArrowUp" || e.code == "KeyX") {
-        // Prevent default action to stop scrolling
-        e.preventDefault();
-
-        //jump
-        velocityY = -6;
-
-        //reset game
-        if (gameOver) {
-            bird.y = birdY;
-            pipeArray = [];
-            score = 0;
-            gameOver = false;
-        }
-    }
-}
