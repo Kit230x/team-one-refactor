@@ -20,7 +20,145 @@
         <title>Signup</title>
 
         <script src="/javascript/randombutton.js"></script>
-        <script src="/javascript/load-bootstrap.js"></script>
+
+        <style>
+            html, body {
+    width: 100%;
+    height: 100%;
+    background: -webkit-linear-gradient(25deg, #FFBE0B, #FB5607, #FF006E, #8338EC, #3A86FF);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+}
+#content_container {
+    width: 30%;
+    height: 70%;
+}
+
+#form_container {
+    width: 100%;
+    height: 100%;
+
+    background-color: #370617;
+    box-shadow: 0 0 50px -20px #000;
+    border-radius: 2%;
+
+    overflow: hidden;
+}
+
+#form_header_container {
+    width: 100%;
+    height: 5%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left;
+
+    padding: 20px;
+    padding-bottom: 30px;
+    padding-top: 30px;
+
+    border-bottom: 1px solid transparent;
+    border-image: -webkit-linear-gradient(25deg, #FFBE0B, #FB5607, #FF006E, #8338EC, #3A86FF) 20;
+    background: #000;
+}
+
+#form_header {
+    display: inline-block;
+    font-size: 15px;
+    font-family: Bowlby One SC;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+
+    background: -webkit-linear-gradient(25deg, #FFBE0B, #FB5607, #FF006E, #8338EC, #3A86FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+}
+
+#form_content_container {
+    width: 100%;
+    height: 90%;
+
+    float: left;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 30px;
+}
+
+#form_content_inner_container {
+    width: 75%;
+    height: 100%;
+
+    float: left;
+
+}
+
+input {
+    width: 100%;
+    height: 40px;
+
+    padding-left: 10px;
+    margin-bottom: 20px;
+
+    background: #000;
+    font-family: Montserrat;
+    font-weight: 500;
+    color: #fff;
+    font-size: 12px;
+
+    border-bottom: 2px solid transparent;
+    border-top-left-radius: 2%;
+    border-top-right-radius: 2%;
+    border-image: -webkit-linear-gradient(25deg, #FFBE0B, #FB5607, #FF006E, #8338EC, #3A86FF) 1;
+}
+
+#button_container {
+    width: 100%;
+    height: 10%;
+
+    background-image: linear-gradient(80deg, #FFBE0B, #FB5607 50%, #FF006E 50%, #8338EC);
+    color: #fff;
+
+    float: left;
+
+    margin-top: 5px;
+}
+
+#button_container button {
+    width: 50%;
+    height: 100%;
+    float: left;
+
+    background: transparent;
+    color: inherit;
+
+    font-family: Montserrat;
+    letter-spacing: 1px;
+    font-weight: 900;
+    font-size: 12px;
+
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+        </style>
 
     </head>
 
@@ -34,6 +172,13 @@ TODOS:
 
 
     <body>
+            <!-- FIREBASE DATABASE -->
+            <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+        
+            <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+        
+            <script src="javascript/config.js"></script>        
 
 <!-- ------------------------------------------------------------------------ -->
 
@@ -72,95 +217,114 @@ TODOS:
 <!-- ------------------------------------------------------------------------ -->
 
     <!-- MAIN CONTENT OF WEBSITE-->
-    <main>
-        <div class="main-container" style="background-image: url('background.gif');">
-            <div class="outter-container">
-                <div class="container" >
-                    <script type="text/javascript" src="javascript/validation.js" defer></script>
-                    <h1>SIGNUP</h1>
 
-<!-- ------------------------------------------------------------------------ -->
-
-                    <!-- AUTH FORMS -->
-                    <div class="auth-outter-container">
-                        <a href="https://google.com"></a>
-                        <div class="auth-container" style="margin-right: 25px; padding: 10px 65px 10px 65px"> 
-                            <a href="https://google.com">
-                                <img src="https://cdn.prod.website-files.com/6753dc0c6ca857205da90ba1/675d0659a64f7112fed8c326_google.svg" loading="lazy" alt="Google">
-                                <div class="text-lg">Google</div>
-                            </a>
+                <div id="content_container">
+                    <div id="form_container">
+                        <div id="form_header_container">
+                            <h2 id="form_header"> Login + Firebase Database </h2>
                         </div>
-
-                        <div style="display:inline-block; margin: auto; position: relative;">
-                        <a style="color: white; font-weight: 800; font-size: 1.5em;">OR</a>
-                        </div>
-
-                        <div class="auth-container" style="margin-left: 25px;">
-                            <a href="https://facebook.com">
-                                <img src="https://cdn.prod.website-files.com/6753dc0c6ca857205da90ba1/675d07305037e641ae210dbd_Facebook.svg" 
-                                loading="lazy" alt>
-                                <div class="text-lg">Facebook</div>
-                            </a>
-                        </div>
-
-                </div>
-
-                    <p id="error-message" style="margin-top: 50px;"></p>
-                    <form id="form" style="margin: auto; width: min(400px, 100%); flex-direction: column; display: flex; gap: 10px;";>
-                        <!-- USERNAME INPUT -->
-                        <div>
-                            <label for="firstname-input">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/></svg>
-                            </label>
-                            <input type="text" name="username" id="username-input" placeholder="Username">
-                        </div>
-                        <!-- EMAIL INPUT -->
-                        <div>
-                            <label for="email-input">
-                                <span>@</span>
-                            </label>
-                            <input type="text" name="email" id="email-input" placeholder="email@examle.com">
-                        </div>
-
-                        <!-- PASSWORD INPUT -->
-                        <div style="position: relative;">
-                            <label for="password-input">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm0-80h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z"/></svg>
-                            </label>
-                            <input type="password" name="password" id="password-input" placeholder="Password" required>
-                            
-                            <!-- Button to toggle password visibility -->
-                            <button type="button" id="toggle-password" aria-label="Show/Hide Password" style="position: absolute; right: 0; top: 0; background: transparent; border: none; padding: 10px;">
-                                
-                                <!-- Default: Visibility Off (show password) image -->
-                                <img id="visibility-on" src="img/vison.png" alt="Show Password" style="width: 24px; height: 24px; display: block;">
-                                
-                                <!-- Visibility Off (hide password) image -->
-                                <img id="visibility-off" src="img/visoff.png" alt="Hide Password" style="width: 24px; height: 24px; display: none;">
-
-                            </button>
-                        </div>
-
-                        <!-- REPEAT PASSWORD -->
-                        <div>
-                            <label>
-                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm0-80h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z"/></svg>
-                            </label>
-                            <input type="password" name="repeatPassword" id="repeat-password-input" placeholder="Repeat Password">
-                        </div>
-
-                        <button type="submit" class="sign-up-btn">Sign Up</button>
-                    </form>
-
-                        <div style="margin-top: 15px;">
-                        <p style="color: white;">Already have an Account? <a href="login.html" style="color: white; text-decoration: none;" class="nav-hover">| Login</a></p>
-                        </div>
-                </div>
-            </div>
         
-        </main>
-</body>
+                        <div id="form_content_container">
+                            <div id="form_content_inner_container">
+                                <input type="text" id="full_name" placeholder="Full name">
+                                <input type="email" id="email" placeholder="Email">
+                                <input type="password" id="password" placeholder="New Password">
+        
+                                <input type="text" id="favourite_song" placeholder="The Best Song Ever">
+                                <input type="text" id="milk_before_cereal" placeholder="Milk Before Cereal? ( Yes | No )">
+        
+                                <div id="button_container">
+                                    <button onclick="login()">Login</button>
+                                    <button onclick="register()">Register</button>
+                                </div>
+        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
 
+        </main>
+    </body>
 </html>
 
 
+<!-- ------------------------------------------------------------------------ -->
+<!--
+                <-- AUTH FORMS --
+                <div class="auth-outter-container">
+                    <a href="https://google.com"></a>
+                    <div class="auth-container" style="margin-right: 25px; padding: 10px 65px 10px 65px"> 
+                        <a href="https://google.com">
+                            <img src="https://cdn.prod.website-files.com/6753dc0c6ca857205da90ba1/675d0659a64f7112fed8c326_google.svg" loading="lazy" alt="Google">
+                            <div class="text-lg">Google</div>
+                        </a>
+                    </div>
+
+                    <div style="display:inline-block; margin: auto; position: relative;">
+                    <a style="color: white; font-weight: 800; font-size: 1.5em;">OR</a>
+                    </div>
+
+                    <div class="auth-container" style="margin-left: 25px;">
+                        <a href="https://facebook.com">
+                            <img src="https://cdn.prod.website-files.com/6753dc0c6ca857205da90ba1/675d07305037e641ae210dbd_Facebook.svg" 
+                            loading="lazy" alt>
+                            <div class="text-lg">Facebook</div>
+                        </a>
+                    </div>
+
+            </div>
+
+                <p id="error-message" style="margin-top: 50px;"></p>
+                <form id="form" style="margin: auto; width: min(400px, 100%); flex-direction: column; display: flex; gap: 10px;";>
+                    <-- USERNAME INPUT --
+                    <div>
+                        <label for="firstname-input">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/></svg>
+                        </label>
+                        <input type="text" name="username" id="username-input" placeholder="Username">
+                    </div>
+                    <-- EMAIL INPUT --
+                    <div>
+                        <label for="email-input">
+                            <span>@</span>
+                        </label>
+                        <input type="text" name="email" id="email-input" placeholder="email@examle.com">
+                    </div>
+
+                    <-- PASSWORD INPUT --
+                    <div style="position: relative;">
+                        <label for="password-input">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm0-80h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z"/></svg>
+                        </label>
+                        <input type="password" name="password" id="password-input" placeholder="Password" required>
+                        
+                        <-- Button to toggle password visibility --
+                        <button type="button" id="toggle-password" aria-label="Show/Hide Password" style="position: absolute; right: 0; top: 0; background: transparent; border: none; padding: 10px;">
+                            
+                            <-- Default: Visibility Off (show password) image --
+                            <img id="visibility-on" src="img/vison.png" alt="Show Password" style="width: 24px; height: 24px; display: block;">
+                            
+                            <-- Visibility Off (hide password) image --
+                            <img id="visibility-off" src="img/visoff.png" alt="Hide Password" style="width: 24px; height: 24px; display: none;">
+
+                        </button>
+                    </div>
+
+                    <-- REPEAT PASSWORD --
+                    <div>
+                        <label>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm0-80h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z"/></svg>
+                        </label>
+                        <input type="password" name="repeatPassword" id="repeat-password-input" placeholder="Repeat Password">
+                    </div>
+
+                    <button type="submit" class="sign-up-btn">Sign Up</button>
+                </form>
+
+                    <div style="margin-top: 15px;">
+                    <p style="color: white;">Already have an Account? <a href="login.html" style="color: white; text-decoration: none;" class="nav-hover">| Login</a></p>
+                    </div>
+            </div>
+        </div>
+    -->
