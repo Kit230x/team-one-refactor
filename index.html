@@ -75,7 +75,7 @@
                             <form action="#">
                                 <div class="search nav-hover">
                                     <span class="material-symbols-outlined search-icon">search</span>
-                                    <input class="search-input" type="text" placeholder="Search for Games" name="search">
+                                    <input class="search-input" type="text" placeholder="Search for Games" name="search" id="gameSearchInput">
                                 </div>
                             </form>
                         </div>
@@ -92,6 +92,9 @@
 
         <!-- MAIN CONTENT OF WEBSITE-->
         <main>
+            <!-- SEARCH RESULTS -->
+            <div id="searchResultsContainer" style="position: absolute; top: 60px; left: 50%; transform: translateX(-50%); background-color: rgba(0, 0, 0, 0.8); color: white; padding: 10px; border-radius: 5px; z-index: 10; display: none; width: 80%;">
+            </div>
 
             <!-- WELCOME MESSAGE -->
             <div class="welcome-tag" style="margin-bottom: 100px;">
@@ -355,6 +358,8 @@
             <p>2025</p>
             <p>Contact Us</p>
         </footer>
+
+        <script src="/javascript/search.js"></script>
 
     </body>
 </html>

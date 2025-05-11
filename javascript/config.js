@@ -1,6 +1,4 @@
 // CONFIGURATION SECTION
-
-// Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyBX7ByqFoHMZxOYi1OAbxQZWoj2f6jUNfk",
     authDomain: "login-t1-ca2a1.firebaseapp.com",
@@ -51,14 +49,12 @@ const firebaseConfig = {
       last_login: Date.now()
     };
 
- 
        // Push to Firebase Database
        database_ref.set(user_data);
  
        // Done
        alert('User Created');
-       window.location.href = 'index.html';
-
+       
      })
      .catch(function(error) {
        // Firebase will use this to alert of its errors
