@@ -83,7 +83,6 @@
 
 
     background: -webkit-linear-gradient(25deg, #FFBE0B, #FB5607, #FF006E, #8338EC, #3A86FF);
-      -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
 }
 
@@ -179,6 +178,8 @@ TODOS:
             <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
         
             <script src="javascript/config.js"></script>        
+            <script src="javascript/auth-state.js"></script>        
+
 
 <!-- ------------------------------------------------------------------------ -->
 
@@ -229,21 +230,16 @@ TODOS:
                                 <input type="text" id="full_name" placeholder="Full name">
                                 <input type="email" id="email" placeholder="Email">
                                 <input type="password" id="password" placeholder="New Password">
-        
-                                <input type="text" id="favourite_song" placeholder="The Best Song Ever">
-                                <input type="text" id="milk_before_cereal" placeholder="Milk Before Cereal? ( Yes | No )">
-        
+                            
                                 <div id="button_container">
                                     <button onclick="login()">Login</button>
                                     <button onclick="register()">Register</button>
                                 </div>
-        
                             </div>
                         </div>
                     </div>
                 </div>
-            
-
+        
         </main>
     </body>
 </html>
