@@ -1,4 +1,4 @@
-console.log('Auth state listener running...');
+console.log('Auth state listener running');
 
 firebase.auth().onAuthStateChanged(function(user) {
   const loginSignupDivs = document.querySelectorAll('.navbar-loginsignup');
@@ -11,14 +11,40 @@ firebase.auth().onAuthStateChanged(function(user) {
       console.log('User is logged in:', user);
       const logoutButton = document.createElement('button');
       logoutButton.className = 'signup-login nav-hover';
-      logoutButton.style.marginRight = '10px';
+      logoutButton.style.backgroundColor = 'transparent'; 
+      logoutButton.style.color = 'white'; 
+      logoutButton.style.border = 'none';
+      logoutButton.style.cursor = 'pointer'; 
+      logoutButton.style.fontWeight = 'bold';
+      logoutButton.style.fontSize = '1em'; 
+      logoutButton.style.transition = 'color 0.3s ease'; 
+      loginSignupDiv.style.marginTop = '0';
+      loginSignupDiv.style.marginRight = '0';
+      logoutButton.addEventListener('mouseover', function() {
+        this.style.color = '#666'; 
+      });
+      logoutButton.addEventListener('mouseout', function() {
+        this.style.color = 'white'; 
+      });
       logoutButton.textContent = 'Logout';
       logoutButton.onclick = logoutUser;
 
       const deleteButton = document.createElement('button');
       deleteButton.id = 'deleteAccountBtn';
       deleteButton.className = 'signup-login nav-hover';
-      deleteButton.style.backgroundColor = '#d32f2f'; // Distinct color
+      deleteButton.style.backgroundColor = 'transparent'; 
+      deleteButton.style.color = 'white'; 
+      deleteButton.style.border = 'none'; 
+      deleteButton.style.cursor = 'pointer'; 
+      deleteButton.style.fontWeight = 'bold';
+      deleteButton.style.fontSize = '1em';
+      deleteButton.style.transition = 'color 0.3s ease'; 
+      deleteButton.addEventListener('mouseover', function() {
+        this.style.color = '#ffaaaa';
+      });
+      deleteButton.addEventListener('mouseout', function() {
+        this.style.color = 'white';
+      });
       deleteButton.textContent = 'Delete Account';
       deleteButton.onclick = deleteCurrentUser;
 

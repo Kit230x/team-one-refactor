@@ -1,4 +1,5 @@
 // CONFIGURATION SECTION
+
 const firebaseConfig = {
     apiKey: "AIzaSyBX7ByqFoHMZxOYi1OAbxQZWoj2f6jUNfk",
     authDomain: "login-t1-ca2a1.firebaseapp.com",
@@ -49,6 +50,7 @@ const firebaseConfig = {
       last_login: Date.now()
     };
 
+ 
        // Push to Firebase Database
        database_ref.set(user_data);
  
@@ -61,6 +63,7 @@ const firebaseConfig = {
        const errorCode = error.code;
        const errorMessage = error.message;
        alert(errorMessage);
+       window.location.href = 'index.html';
      });
    }
    // Set up our login function

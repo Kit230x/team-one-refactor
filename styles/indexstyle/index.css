@@ -17,7 +17,6 @@ html, body {
 }
 
 .welcome-tag {
-    background-image: url('background.gif');
     background-size: contain;
     background-repeat: no-repeat;
     background-size: 100% 700px;
