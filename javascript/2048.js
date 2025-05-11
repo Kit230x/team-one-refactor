@@ -4,45 +4,45 @@ let rows = 4;
 let columns = 4;
 
 // Polyfill for requestAnimationFrame and cancelAnimationFrame
-(function() {
+(function () {
     var lastTime = 0;
     var vendors = ['webkit', 'moz'];
-    for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-      window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
-      window.cancelAnimationFrame =
-      window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
+    for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+        window.cancelAnimationFrame =
+            window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
     }
-  
+
     if (!window.requestAnimationFrame) {
-      window.requestAnimationFrame = function(callback, element) {
-        var currTime = new Date().getTime();
-        var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-        var id = window.setTimeout(function() { callback(currTime + timeToCall); },
-        timeToCall);
-        lastTime = currTime + timeToCall;
-        return id;
-      };
+        window.requestAnimationFrame = function (callback, element) {
+            var currTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+            var id = window.setTimeout(function () { callback(currTime + timeToCall); },
+                timeToCall);
+            lastTime = currTime + timeToCall;
+            return id;
+        };
     }
-  
+
     if (!window.cancelAnimationFrame) {
-      window.cancelAnimationFrame = function(id) {
-        clearTimeout(id);
-      };
+        window.cancelAnimationFrame = function (id) {
+            clearTimeout(id);
+        };
     }
-  }());
-  
-  let position = 0;
-  function animate() {
+}());
+
+let position = 0;
+function animate() {
     position += 1;
     document.getElementById('myElement').style.transform = `translateX(${position}px)`;
-  
+
     if (position < 300) {
-      requestAnimationFrame(animate);
+        requestAnimationFrame(animate);
     }
-  }
-  
-  requestAnimationFrame(animate);
-  
+}
+
+requestAnimationFrame(animate);
+
 window.onload = function () {
     setGame();
 };
@@ -54,13 +54,16 @@ function setGame() {
         [0, 0, 0, 0],
         [0, 0, 0, 0]
     ];
-
+    score = 0;
+    document.getElementById("board").innerHTML = ''; // Clear the board
+    document.getElementById("score").innerText = score; // Reset Score Display
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < columns; c++) {
             let tile = document.createElement("div");
             tile.id = `${r}-${c}`;
             tile.classList.add("tile");
             document.getElementById("board").append(tile);
+            updateTile(tile, board[r][c]); //update the tile
         }
     }
     setTwo();
@@ -69,7 +72,7 @@ function setGame() {
 
 function updateTile(tile, num) {
     tile.innerText = num > 0 ? num.toString() : "";
-    tile.className = "tile"; 
+    tile.className = "tile";
     if (num > 0) {
         tile.classList.add(`x${num <= 4096 ? num : 8192}`);
     }
@@ -90,8 +93,14 @@ document.addEventListener("keyup", (e) => {
     }
 
     if (moved) {
-        setTimeout(setTwo, 200); 
+        setTimeout(setTwo, 200);
         document.getElementById("score").innerText = score;
+        saveGameSession('2048-game', score); // Save score after a valid move
+        if (!canMove()) {
+            gameOver();
+        }
+    } else if (!canMove()) {
+        gameOver();
     }
 });
 
@@ -100,8 +109,8 @@ function filterZero(row) {
 }
 
 function slide(row, direction) {
-    let originalRow = [...row]; 
-    row = filterZero(row); 
+    let originalRow = [...row];
+    row = filterZero(row);
 
     for (let i = 0; i < row.length - 1; i++) {
         if (row[i] === row[i + 1]) {
@@ -111,7 +120,7 @@ function slide(row, direction) {
         }
     }
 
-    row = filterZero(row); 
+    row = filterZero(row);
 
     while (row.length < columns) {
         if (direction === "right" || direction === "down") {
@@ -120,16 +129,6 @@ function slide(row, direction) {
             row.push(0);
         }
     }
-
-    setTimeout(() => {
-        for (let i = 0; i < columns; i++) {
-            if (row[i] !== originalRow[i]) {
-                let tile = document.getElementById(`tile-${i}`);
-                animateTileMovement(tile, i, row[i]); 
-            }
-        }
-    }, 150); 
-
     return row;
 }
 
@@ -193,13 +192,9 @@ function slideUp() {
         let newColumn = slide(originalColumn);
 
         for (let r = 0; r < rows; r++) {
-            if (board[r][c] !== newColumn[r]) {
-                let tile = document.getElementById(`${r}-${c}`);
-                animateTileMovement(tile, 0, 100, 0, 0);
-                moved = true;
-            }
+            if (board[r][c] !== newColumn[r]) moved = true;
             board[r][c] = newColumn[r];
-            updateTile(document.getElementById(`${r}-${c}`), newColumn[r]);
+            updateTile(document.getElementById(`${r}-${c}`), board[r][c]);
         }
     }
     return moved;
@@ -210,25 +205,20 @@ function slideDown() {
     let moved = false;
     for (let c = 0; c < columns; c++) {
         let originalColumn = [board[0][c], board[1][c], board[2][c], board[3][c]];
-        let newColumn = slide(originalColumn.reverse()).reverse();
+        let newColumn = slide(originalColumn.slice().reverse()).reverse();
 
         for (let r = 0; r < rows; r++) {
-            if (board[r][c] !== newColumn[r]) {
-                let tile = document.getElementById(`${r}-${c}`);
-                animateTileMovement(tile, 0, -100, 0, 0);
-                moved = true;
-            }
+            if (board[r][c] !== newColumn[r]) moved = true;
             board[r][c] = newColumn[r];
-            updateTile(document.getElementById(`${r}-${c}`), newColumn[r]);
+            updateTile(document.getElementById(`${r}-${c}`), board[r][c]);
         }
     }
     return moved;
 }
 
-
 function setTwo() {
     if (!hasEmptyTile()) return;
-    
+
     let found = false;
     while (!found) {
         let r = Math.floor(Math.random() * rows);
@@ -254,14 +244,43 @@ function hasEmptyTile() {
     return false;
 }
 
-if (row[i] == row[i+1]) {
-    row[i] *= 2;
-    row[i+1] = 0;
-    score += row[i];
+function canMove() {
+     if (hasEmptyTile()) {
+        return true;
+    }
 
-    let tile = document.getElementById(r.toString() + "-" + c.toString());
-    tile.style.transform = "scale(1.2)"; 
-    setTimeout(() => {
-        tile.style.transform = "scale(1)";
-    }, 200);
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns - 1; c++) {
+            if (board[r][c] === board[r][c + 1]) {
+                return true;
+            }
+        }
+    }
+
+    for (let c = 0; c < columns; c++) {
+        for (let r = 0; r < rows - 1; r++) {
+            if (board[r][c] === board[r + 1][c]) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+
+
+function gameOver() {
+    alert(`Game Over! Your final score is ${score}`);
+    // Optionally show a restart button here
+    let restartButton = document.getElementById("restart-button");
+    if (!restartButton) {
+        restartButton = document.createElement("button");
+        restartButton.id = "restart-button";
+        restartButton.innerText = "Restart Game";
+        restartButton.onclick = setGame;
+        document.getElementById("board-container").appendChild(restartButton); // Assuming you have a container for the board and button
+    } else {
+        restartButton.style.display = "block";
+    }
+    saveGameSession('2048-game', score); // Save the final score on game over
 }

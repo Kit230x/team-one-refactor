@@ -70,8 +70,10 @@ firebase.auth().onAuthStateChanged(function(user) {
 function logoutUser() {
   firebase.auth().signOut().then(function() {
     console.log('User signed out');
+    window.location.href = 'signup.html'; // Redirect to signup page after logout
   }).catch(function(error) {
     console.error('Error signing out:', error);
+    alert('Error signing out.');
   });
 }
 
@@ -96,6 +98,7 @@ function deleteCurrentUser() {
         .then(() => {
           console.log('User account deleted successfully');
           alert('Your account and all associated data have been deleted.');
+          window.location.href = 'signup.html'; // Redirect to signup page after delete
         })
         .catch((error) => {
           console.error('Error deleting user account and/or data:', error);

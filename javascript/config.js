@@ -124,3 +124,26 @@ const firebaseConfig = {
    function validate_field(field) {
      return field != null && field.length > 0;
    }
+
+// LEADERBOARD TRACKER
+   function saveGameSession(gameName, score) {
+    const user = firebase.auth().currentUser;
+    if (user) {
+      const userId = user.uid;
+      const timestamp = Date.now();
+      const gameSessionsRef = firebase.database().ref(`game_sessions/${gameName}/${userId}`);
+  
+      gameSessionsRef.push({
+        score: score,
+        timestamp: timestamp
+      })
+      .then(() => {
+        console.log(`Score ${score} saved for ${gameName} by user ${userId} at ${new Date(timestamp).toLocaleString()}`);
+      })
+      .catch((error) => {
+        console.error('Error saving game session:', error);
+      });
+    } else {
+      console.log('User not logged in, cannot save score.');
+    }
+  }
