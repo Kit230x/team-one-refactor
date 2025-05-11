@@ -2,5 +2,10 @@
     --text-color: whitesmoke;
     --background-color: rgb(7, 4, 23);
     --flexbox-background-color: rgb(16, 16,16);
-    --inner-flexbox-color: rgb(24, 24, 24);
+    --inner-flexbox-color: rgb(24, 24, 24);   
+}
+
+/* BOX-SIZING TO ENSURE PADDING DOESN'T AFFECT FINAL COMPUTED WIDTH OF AN ELEMENT*/
+.selector-for-some-width {
+    box-sizing: content-box;
 }
