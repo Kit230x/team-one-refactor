@@ -1,7 +1,6 @@
 const searchInput = document.getElementById('gameSearchInput');
 const searchResultsContainer = document.getElementById('searchResultsContainer');
 
-// Sample game data (replace with your actual game data)
 const gameData = [
   { name: "Tic-Tac-Toe", tags: ["classic", "two-player"], url: "classic-games/tic-tac-toe.html" },
   { name: "Rock-Paper-Scissors", tags: ["classic", "two-player"], url: "classic-games/rock-paper-scissors.html" },
@@ -14,8 +13,7 @@ const gameData = [
   { name: "Breakout", tags: ["arcade", "retro"], url: "retro-games/breakout.html" },
   { name: "Pong", tags: ["arcade", "retro"], url: "retro-games/pong.html" },
   { name: "Snake", tags: ["arcade", "retro"], url: "retro-games/snake.html" },
-  { name: "Space Invaders", tags: ["arcade", "shooting"], url: "retro-games/space-invaders.html" },
-  // ... more games - **REPLACE THIS WITH YOUR ACTUAL GAME DATA**
+  { name: "Tank", tags: ["arcade", "tank"], url: "retro-games/tanks.html" },
 ];
 
 function searchGames(query) {
