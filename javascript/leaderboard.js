@@ -10,9 +10,10 @@ function fetchAndDisplayLeaderboard() {
   
     userScoresRef.once('value', (snapshot) => {
       const allUserScores = snapshot.val();
-      if (allUserScores) {
-        const gameLeaderboards = {};
+      const gameLeaderboards = {};
   
+      // Process all user scores to find top scores for each game
+      if (allUserScores) {
         for (const userId in allUserScores) {
           const userGameScores = allUserScores[userId];
           for (const gameName in userGameScores) {
@@ -29,50 +30,54 @@ function fetchAndDisplayLeaderboard() {
           }
         }
   
+        // Sort the leaderboards for each game
         for (const gameName in gameLeaderboards) {
-          gameLeaderboards[gameName].sort((a, b) => b.score - a.score);
-          console.log('Sorted scores for', gameName, ':', gameLeaderboards[gameName]); // Debugging sort
-  
-          const gameDiv = document.createElement('div');
-          gameDiv.style.width = '45%';
-          gameDiv.style.marginBottom = '20px';
-  
-          const title = document.createElement('h4');
-          title.style.textDecoration = 'underline';
-          title.textContent = gameName;
-          gameDiv.appendChild(title);
-  
-          if (gameLeaderboards[gameName].length > 0) {
-            const ol = document.createElement('ol');
-            for (let i = 0; i < Math.min(3, gameLeaderboards[gameName].length); i++) {
-              const entry = gameLeaderboards[gameName][i];
-              usersRef.child(entry.userId).once('value', (userSnapshot) => {
-                const userData = userSnapshot.val();
-                const username = userData ? userData.full_name : 'Unknown User';
-                const formattedTimestamp = new Date(entry.timestamp).toLocaleTimeString();
-                const li = document.createElement('li');
-                li.textContent = `${username} - Score: ${entry.score} (${formattedTimestamp})`;
-                ol.appendChild(li);
-                if (i === Math.min(3, gameLeaderboards[gameName].length) - 1) {
-                  gameDiv.appendChild(ol);
-                  leaderboardContainer.appendChild(gameDiv);
-                }
-              });
-            }
-          } else {
-            const noScores = document.createElement('p');
-            noScores.textContent = 'N/A';
-            gameDiv.appendChild(noScores);
-            leaderboardContainer.appendChild(gameDiv);
+          if (gameLeaderboards[gameName]) {
+            gameLeaderboards[gameName].sort((a, b) => b.score - a.score);
           }
         }
+      }
   
-        if (Object.keys(gameLeaderboards).length === 0 && gamesToShow.length > 0) {
-          const noScoresOverall = document.createElement('p');
-          noScoresOverall.textContent = 'No high scores recorded yet for the selected games.';
-          leaderboardContainer.appendChild(noScoresOverall);
+      // Display the leaderboard for each game
+      gamesToShow.forEach(gameName => {
+        const gameDiv = document.createElement('div');
+        gameDiv.style.width = '45%';
+        gameDiv.style.marginBottom = '20px';
+  
+        const title = document.createElement('h4');
+        title.style.textDecoration = 'underline';
+        title.textContent = gameName;
+        gameDiv.appendChild(title);
+  
+        if (gameLeaderboards[gameName] && gameLeaderboards[gameName].length > 0) {
+          const ol = document.createElement('ol');
+          for (let i = 0; i < Math.min(3, gameLeaderboards[gameName].length); i++) {
+            const entry = gameLeaderboards[gameName][i];
+            usersRef.child(entry.userId).once('value', (userSnapshot) => {
+              const userData = userSnapshot.val();
+              const username = userData ? userData.full_name : 'Unknown User';
+              const formattedTimestamp = new Date(entry.timestamp).toLocaleTimeString();
+              const li = document.createElement('li');
+              li.textContent = `${username} - Score: ${entry.score} (${formattedTimestamp})`;
+              ol.appendChild(li);
+              if (i === Math.min(3, gameLeaderboards[gameName].length) - 1) {
+                gameDiv.appendChild(ol);
+                leaderboardContainer.appendChild(gameDiv);
+              } else if (!gameDiv.querySelector('ol')) {
+                gameDiv.appendChild(ol); // Append the ol on the first entry
+                leaderboardContainer.appendChild(gameDiv);
+              }
+            });
+          }
+        } else {
+          const noScores = document.createElement('p');
+          noScores.textContent = 'N/A';
+          gameDiv.appendChild(noScores);
+          leaderboardContainer.appendChild(gameDiv);
         }
-      } else if (gamesToShow.length > 0) {
+      });
+  
+      if (gamesToShow.length > 0 && !allUserScores) {
         const noScoresInitial = document.createElement('p');
         noScoresInitial.textContent = 'No scores recorded yet.';
         leaderboardContainer.appendChild(noScoresInitial);
