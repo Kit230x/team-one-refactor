@@ -178,4 +178,10 @@ footer {
   color: white;
   width: 100%;
 }
-
+.leaderboard-section {
+    background-color: #444;
+    color: white; /* To make the text readable on the dark background */
+    padding: 20px; /* Keep the padding for spacing */
+    margin-top: 50px; /* Keep the margin for spacing */
+    border-radius: 8px; /* Keep the border-radius if you like it */
+  }

@@ -1,34 +1,84 @@
-function displayUserScores() {
-    const userScoresDiv = document.getElementById('userScores');
-    userScoresDiv.innerHTML = '<h3>Top Scores</h3>'; // Clear previous content
+function fetchAndDisplayLeaderboard() {
+    const leaderboardContainer = document.getElementById('leaderboard');
+    leaderboardContainer.style.display = 'flex';
+    leaderboardContainer.style.flexWrap = 'wrap';
+    leaderboardContainer.style.justifyContent = 'space-around';
   
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        const userId = user.uid;
-        const userScoresRef = firebase.database().ref(`user_scores/${userId}`);
+    const userScoresRef = firebase.database().ref('user_scores');
+    const usersRef = firebase.database().ref('users');
+    const gamesToShow = ['snake', 'flappy-bird', 'breakout', '2048 game'];
   
-        userScoresRef.on('value', (snapshot) => {
-          const gameScores = snapshot.val();
-          if (gameScores) {
-            for (const gameName in gameScores) {
-              const scores = gameScores[gameName];
-              let gameScoreHTML = `<h4>${gameName}</h4><ul>`;
-              for (const scoreDataKey in scores) {
-                const scoreData = scores[scoreDataKey];
-                gameScoreHTML += `<li>Score: ${scoreData.score} (${new Date(scoreData.timestamp).toLocaleTimeString()})</li>`;
+    userScoresRef.once('value', (snapshot) => {
+      const allUserScores = snapshot.val();
+      if (allUserScores) {
+        const gameLeaderboards = {};
+  
+        for (const userId in allUserScores) {
+          const userGameScores = allUserScores[userId];
+          for (const gameName in userGameScores) {
+            if (gamesToShow.includes(gameName)) {
+              const scores = userGameScores[gameName];
+              for (const scoreId in scores) {
+                const scoreData = scores[scoreId];
+                if (!gameLeaderboards[gameName]) {
+                  gameLeaderboards[gameName] = [];
+                }
+                gameLeaderboards[gameName].push({ userId: userId, score: scoreData.score, timestamp: scoreData.timestamp });
               }
-              gameScoreHTML += '</ul>';
-              userScoresDiv.innerHTML += gameScoreHTML;
+            }
+          }
+        }
+  
+        for (const gameName in gameLeaderboards) {
+          gameLeaderboards[gameName].sort((a, b) => b.score - a.score);
+          console.log('Sorted scores for', gameName, ':', gameLeaderboards[gameName]); // Debugging sort
+  
+          const gameDiv = document.createElement('div');
+          gameDiv.style.width = '45%';
+          gameDiv.style.marginBottom = '20px';
+  
+          const title = document.createElement('h4');
+          title.style.textDecoration = 'underline';
+          title.textContent = gameName;
+          gameDiv.appendChild(title);
+  
+          if (gameLeaderboards[gameName].length > 0) {
+            const ol = document.createElement('ol');
+            for (let i = 0; i < Math.min(3, gameLeaderboards[gameName].length); i++) {
+              const entry = gameLeaderboards[gameName][i];
+              usersRef.child(entry.userId).once('value', (userSnapshot) => {
+                const userData = userSnapshot.val();
+                const username = userData ? userData.full_name : 'Unknown User';
+                const formattedTimestamp = new Date(entry.timestamp).toLocaleTimeString();
+                const li = document.createElement('li');
+                li.textContent = `${username} - Score: ${entry.score} (${formattedTimestamp})`;
+                ol.appendChild(li);
+                if (i === Math.min(3, gameLeaderboards[gameName].length) - 1) {
+                  gameDiv.appendChild(ol);
+                  leaderboardContainer.appendChild(gameDiv);
+                }
+              });
             }
           } else {
-            userScoresDiv.innerHTML += '<p>No scores recorded yet.</p>';
+            const noScores = document.createElement('p');
+            noScores.textContent = 'N/A';
+            gameDiv.appendChild(noScores);
+            leaderboardContainer.appendChild(gameDiv);
           }
-        });
-      } else {
-        userScoresDiv.innerHTML = '<p>Log in to see your scores.</p>';
+        }
+  
+        if (Object.keys(gameLeaderboards).length === 0 && gamesToShow.length > 0) {
+          const noScoresOverall = document.createElement('p');
+          noScoresOverall.textContent = 'No high scores recorded yet for the selected games.';
+          leaderboardContainer.appendChild(noScoresOverall);
+        }
+      } else if (gamesToShow.length > 0) {
+        const noScoresInitial = document.createElement('p');
+        noScoresInitial.textContent = 'No scores recorded yet.';
+        leaderboardContainer.appendChild(noScoresInitial);
       }
     });
   }
   
-  // Call this function when the index page loads
-  displayUserScores();
+  // Call this function on the index page load
+  fetchAndDisplayLeaderboard();

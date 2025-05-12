@@ -186,10 +186,14 @@ function restartGame() {
 }
 
 function endGame(message) {
+  console.log('endGame function called');
   clearInterval(timer);
   gameOverMessage.innerText = message;
   gameOverMessage.style.display = "block";
   restartBtn.disabled = false;
+
+  console.log('Current user in endGame:', firebase.auth().currentUser); // Add this line
+  saveGameScore('snake', score);
 }
 
 window.onload = function () {
