@@ -54,7 +54,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     } else {
       console.log('User is logged out.');
       loginSignupDiv.innerHTML = `
-        <a href="signup.html" class="signup-login nav-hover">Login & Signup</a>
+        <a href="../signup.html" class="signup-login nav-hover">Login & Signup</a>
       `;
     }
   });
@@ -71,7 +71,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 function logoutUser() {
   firebase.auth().signOut().then(function() {
     console.log('User signed out');
-    window.location.href = 'signup.html'; // Redirect to signup page after logout
+    window.location.href = '../signup.html'; // Redirect to signup page after logout
   }).catch(function(error) {
     console.error('Error signing out:', error);
     alert('Error signing out.');
@@ -99,7 +99,7 @@ function deleteCurrentUser() {
         .then(() => {
           console.log('User account deleted successfully');
           alert('Your account and all associated data have been deleted.');
-          window.location.href = 'signup.html'; // Redirect to signup page after delete
+          window.location.href = '../signup.html'; // Redirect to signup page after delete
         })
         .catch((error) => {
           console.error('Error deleting user account and/or data:', error);
@@ -110,28 +110,4 @@ function deleteCurrentUser() {
   } else {
     alert('No user is currently logged in.');
   }
-}
-
-// Password visibility toggle functionality with image files
-const togglePasswordButton = document.getElementById('toggle-password');
-const passwordInput = document.getElementById('password-input');
-const visibilityOnIcon = document.getElementById('visibility-on');
-const visibilityOffIcon = document.getElementById('visibility-off');
-
-if (togglePasswordButton && passwordInput && visibilityOnIcon && visibilityOffIcon) {
-  togglePasswordButton.addEventListener('click', () => {
-      // Toggle the type of the password input
-      const currentType = passwordInput.getAttribute('type');
-      if (currentType === 'password') {
-          passwordInput.setAttribute('type', 'text'); // Show password
-          // Hide the "visibility off" image and show the "visibility on" image
-          visibilityOnIcon.style.display = 'none';
-          visibilityOffIcon.style.display = 'block';
-      } else {
-          passwordInput.setAttribute('type', 'password'); // Hide password
-          // Hide the "visibility on" image and show the "visibility off" image
-          visibilityOnIcon.style.display = 'block';
-          visibilityOffIcon.style.display = 'none';
-      }
-  });
 }
