@@ -50,6 +50,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
       loginSignupDiv.appendChild(logoutButton);
       loginSignupDiv.appendChild(deleteButton);
+      
     } else {
       console.log('User is logged out.');
       loginSignupDiv.innerHTML = `
