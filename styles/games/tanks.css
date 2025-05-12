@@ -1,0 +1,13 @@
+/* universal styling reset - ensures padding/margin is consistent across browsers */
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/* display: block; makes it a block level element instead of inline. Gets its own space. */
+/* margin: 0 auto; - 0 means no margin top and bottom, auto means adjust left and right margins equally (width must be provided to work) */
+canvas {
+    background: #c9cba3;
+    display: block;
+    margin: 0 auto;
+}

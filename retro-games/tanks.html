@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="/styles/indexstyle/index.css">
         <link rel="stylesheet" href="/styles/nav.css">
         <link rel="stylesheet" href="/styles/globalstyling.css">
+        <link rel="stylesheet" href="styles/games/tanks.css">
 
 
         <!-- SEARCH BAR ICON -->
@@ -15,6 +16,7 @@
         <title>T1-Games</title>
 
         <script src="/javascript/randombutton.js"></script>
+        <script src="/javascript/tanks.js" defer></script>
 
         <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
@@ -83,12 +85,12 @@ TODOS:
     <div style="margin: auto;">
     <!-- GAME TITLE -->
         <div class="game-title-tag" style="margin: auto; align-items: center;">
-            <h1 style="font-size: 2em; margin-top: 100px; margin-left: 250px;">Space Invaders</h1>
+            <h1 style="font-size: 2em; margin-top: 100px; margin-left: 250px;">Tanks! Each player starts with 3 lives... Good luck!</h1>
         </div>
 
 <!-- ------------------------------------------------------------------------ -->
 
-    <!-- MAIN CONTIANER FOR CONTENT -->
+    <!-- MAIN CONTAINER FOR CONTENT -->
 
     <!-- HOLDS SIDEBAR CONTENT AND GAME -->
     <div style="display: flex; justify-content: space-between; height: 500px;">
@@ -96,23 +98,33 @@ TODOS:
 <!-- ------------------------------------------------------------------------ -->
 
     <!-- LEFT SIDEBAR CONTENT  -->
-    <div class="sidebar" style="margin-left: 250px;">
-
-    </div>
+    <div style="left: 20px; top: 150px; width: 180px; text-align: left; margin-left: 10px;">
+    <strong>Player One:</strong><br><br>
+    Forward: <kbd>W</kbd><br>
+    Backward: <kbd>S</kbd><br>
+    Rotate: <kbd>A</kbd>/<kbd>D</kbd><br>
+    Turret: <kbd>F</kbd>/<kbd>G</kbd><br>
+    Shoot: <kbd>Space</kbd>
+</div>
 
 <!-- ------------------------------------------------------------------------ -->
 
     <!-- GAME CONTAINER CONTENT ** PUT GAME CONTENT HERE -->
     <div>
-        <div id="score-container">Score: <span id="gameScore">0</span></div>
+       <canvas id="myCanvas" width="1280" height="720"> <!-- 16 by 9 aspect ratio --> </canvas>
     </div>
 
  <!-- ------------------------------------------------------------------------ -->
 
     <!-- RIGHT SIDEBAR CONTENT -->
-    <div class="sidebar" style="margin-right: 250px;">
-
-    </div>
+<div style="right: 20px; top: 150px; width: 180px; text-align: right; margin-right: 10px;">
+    <strong>Player Two:</strong><br><br>
+    Forward: <kbd>↑</kbd><br>
+    Backward: <kbd>↓</kbd><br>
+    Rotate: <kbd>←</kbd>/<kbd>→</kbd><br>
+    Turret: <kbd>I</kbd>/<kbd>O</kbd><br>
+    Shoot: <kbd>P</kbd>
+</div>
 
 <!-- ------------------------------------------------------------------------ -->
 
@@ -122,11 +134,11 @@ TODOS:
 <!-- ------------------------------------------------------------------------ -->
     </div> 
     <!-- FOOTER -->
-    <footer style="background-color: rgb(38, 38, 38); border-top: 5px solid #111; display: flex; justify-content: space-evenly; bottom: 0;">
+    <!-- <footer style="background-color: rgb(38, 38, 38); border-top: 5px solid #111; display: flex; justify-content: space-evenly; bottom: 0;">
         <p>T1 GAMES</p>
         <p>2025</p>
         <p>Contact Us</p>
-    </footer>
+    </footer> -->
 
     <script src="/javascript/search-gamepages.js"></script>
 

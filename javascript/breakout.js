@@ -11,22 +11,33 @@ const ball = {
     x: (canvas.width / 2), 
     y: 0, // placeholder
     radius: 10,
-    dx: 1,
-    dy: -1,
+    dx: 100,
+    dy: -100,
     nextX: 0,
     nextY: 0,
     color: "#0095DD"
 };
 
-ball.nextX = (ball.x + ball.dx);
-ball.nextY = (ball.y + ball.dy);
+let deltaTime = 0;
+
+function getNextX(deltaTime) {
+    ball.nextX = (ball.x + ball.dx * deltaTime);
+    return ball.nextX;
+}
+
+function getNextY(deltaTime) {
+    ball.nextY = (ball.y + ball.dy * deltaTime);
+    return ball.nextY;
+}
+
+
 
 const paddle = {
     height: 10,
     width: 125,
     x: 0, // placeholder, dependent on width and can't be assigned yet
     y: canvas.height - 20,
-    delta: 5,
+    delta: 200,
     color: "#0095DD",
     type: "paddle"
 };
@@ -115,8 +126,8 @@ function sweptCollisionDetection(toBeChecked) {
     // guard statement to prevent excess scoring bug
     if (toBeChecked.type === "brick" && toBeChecked.status === 0) return;
 
-    const isInX = (ball.nextX + ball.radius >= toBeChecked.x && ball.nextX - ball.radius <= toBeChecked.x + toBeChecked.width);
-    const isInY = (ball.nextY + ball.radius >= toBeChecked.y && ball.nextY - ball.radius <= toBeChecked.y + toBeChecked.height);
+    const isInX = (getNextX(deltaTime) + ball.radius >= toBeChecked.x && getNextX(deltaTime) - ball.radius <= toBeChecked.x + toBeChecked.width);
+    const isInY = (getNextY(deltaTime) + ball.radius >= toBeChecked.y && getNextY(deltaTime) - ball.radius <= toBeChecked.y + toBeChecked.height);
 
 
 
@@ -149,9 +160,9 @@ function sweptCollisionDetection(toBeChecked) {
         if (toBeChecked.type === "paddle") {
             // puttin some english on it !! "not" checks are to make sure paddle isn't against the wall (ie not moving)
             if (leftPressed && !(paddle.x === 0)) {
-                ball.dx -= 2;
+                ball.dx -= 100;
             } else if (rightPressed && !(paddle.x + paddle.width === canvas.width)) {
-                ball.dx += 2;
+                ball.dx += 100;
             }
 
             if (ball.dy > 0) {
@@ -166,19 +177,19 @@ function sweptCollisionDetection(toBeChecked) {
     return false; // no collision detected
 }
 
-function wallCollision() {
+function wallCollision(deltaTime) {
     // ball collision detection
     // checks if x value goes over or under the width, if so- reverses direction (ball.dx)
-    if (ball.x + ball.dx > canvas.width - ball.radius || ball.x + ball.dx < ball.radius) {
+    if (ball.x + ball.dx * deltaTime > canvas.width - ball.radius || ball.x + ball.dx * deltaTime < ball.radius) {
         ball.dx = -ball.dx;
         ball.color = getRandomColor();
     }
 
     // checks if y value goes under the height, if so- reverses direction (ball.dy)
-    if (ball.y + ball.dy < ball.radius) {
+    if (ball.y + ball.dy * deltaTime < ball.radius) {
         ball.dy = -ball.dy;
         ball.color = getRandomColor();
-    } else if (ball.y + ball.dy > canvas.height + offscreenBuffer) {
+    } else if (ball.y + ball.dy * deltaTime > canvas.height + offscreenBuffer) {
         lives--;
         if (lives < 0) lives = 0;
         if (lives === 0) {
@@ -189,10 +200,10 @@ function wallCollision() {
     }
 }
 
-function ballMovement() {
+function ballMovement(deltaTime) {
     // this clamps the speed value between 3 and 11, then assigns the appropriate sign
-    const minSpeed = 3;
-    const maxSpeed = 9;
+    const minSpeed = 100;
+    const maxSpeed = 200;
     const clampSpeed = (value) => {
         const sign = Math.sign(value); // returns 1 or -1
         const magnitude = Math.max(minSpeed, Math.min(Math.abs(value), maxSpeed));
@@ -202,11 +213,11 @@ function ballMovement() {
     ball.dx = clampSpeed(ball.dx);
     ball.dy = clampSpeed(ball.dy);
 
-    ball.nextX = (ball.x + ball.dx);
-    ball.nextY = (ball.y + ball.dy);
+    ball.nextX = (ball.x + ball.dx * deltaTime);
+    ball.nextY = (ball.y + ball.dy * deltaTime);
 
-    ball.x += ball.dx;
-    ball.y += ball.dy;
+    ball.x += ball.dx * deltaTime;
+    ball.y += ball.dy * deltaTime;
 }
 
 function drawScore() {
@@ -303,8 +314,8 @@ function drawGameOverScreen() {
 function resetBall() {
     ball.x = paddle.x + (paddle.width / 2);
     ball.y = paddle.y - ball.radius - 2;
-    ball.dx = 1;
-    ball.dy = -1;
+    ball.dx = 300;
+    ball.dy = -300;
     ball.color = "#0095DD";
     console.log(ball.x);
     console.log(canvas.width);
@@ -329,9 +340,16 @@ function resetGame() {
     lives = 3;
 }
 
+let lastTime = Date.now();
+
 function draw() {
     // clearRect() will wipe the canvas every frame.
     // params- starting x and y coords, width and height
+
+    const now = Date.now();
+    let deltaTime = (now - lastTime) / 1000; // deltaTime in seconds
+    lastTime = now;
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     if (gameState === "start") {
@@ -368,14 +386,14 @@ function draw() {
     if (!collidedThisFrame) {
         sweptCollisionDetection(paddle);    
     }
-    wallCollision();
-    ballMovement();
+    wallCollision(deltaTime);
+    ballMovement(deltaTime);
 
     // wall collision detection for paddle, ensures it stays inside canvas borders
     if (rightPressed) {
-        paddle.x = Math.min(paddle.x + paddle.delta, canvas.width - paddle.width);
+        paddle.x = Math.min(paddle.x + paddle.delta * deltaTime, canvas.width - paddle.width);
     } else if (leftPressed) {
-        paddle.x = Math.max(paddle.x - paddle.delta, 0);
+        paddle.x = Math.max(paddle.x - paddle.delta * deltaTime, 0);
     }
 
     // win check. 100 at end is millisecond delay to allow browser to draw everything properly
