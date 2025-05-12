@@ -54,3 +54,38 @@ canvas {
     color: #ccc;
     cursor: not-allowed;
 }
+
+.chatroom-container {
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    max-width: 900px;
+    padding: 20px;
+}
+
+#messageDisplay {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff;
+    font-size: 14px;
+}
+
+textarea {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    resize: none;
+}
+
+button {
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
