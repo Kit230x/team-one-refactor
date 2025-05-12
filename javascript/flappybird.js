@@ -32,7 +32,7 @@ let bottomPipeImg;
 // PHYSICS
 let velocityX = -1; // MOVEMENT OF PIPE
 let velocityY = -0; // JUMP SPEED 
-let gravity = 0.1 ;
+let gravity = 0.2;
 
 let gameOver = false;  
 let score = 0;
@@ -43,7 +43,6 @@ window.onload = function() {
     board.width = boardWidth;
     context = board.getContext("2d"); //used for drawing on the board
 
-   
     // IMAGES 
     birdImg = new Image();
     birdImg.src = "/arcade-games/flappy-bird-img/flappybird.png";
@@ -85,7 +84,7 @@ function update() {
         context.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height);
 
         if (!pipe.passed && bird.x > pipe.x + pipe.width) {
-            score += 0.5; //0.5 because there are 2 pipes! so 0.5*2 = 1, 1 for each set of pipes
+            score += 0.5; 
             pipe.passed = true;
         }
 
@@ -116,7 +115,7 @@ function placePipes() {
     }
 
     let randomPipeY = pipeY - pipeHeight/4 - Math.random()*(pipeHeight/2);
-    let openingSpace = board.height/4;
+    let openingSpace = board.height/3;
 
     let topPipe = {
         img : topPipeImg,
@@ -138,13 +137,12 @@ function placePipes() {
     }
     pipeArray.push(bottomPipe);
 }
-
 function moveBird(e) {  
     if (e.code == "Space" || e.code == "ArrowUp" || e.code == "   KeyX") {
         e.preventDefault(); // Prevent default scrolling behavior
 
         // jump
-        velocityY = -4;
+        velocityY = -6;
 
         // reset game
         if (gameOver) {
