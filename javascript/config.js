@@ -20,7 +20,7 @@ const firebaseConfig = {
    function register () {
     // Get all our input fields
     let email = document.getElementById('email').value;
-    let password = document.getElementById('password').value;
+    let password = document.getElementById('password-input').value;
     let full_name = document.getElementById('full_name').value;
  
     // Validate input fields
@@ -70,7 +70,7 @@ const firebaseConfig = {
    function login () {
     // Get all our input fields
     let email = document.getElementById('email').value;
-    let password = document.getElementById('password').value;
+    let password = document.getElementById('password-input').value;
   
     // Validate input fields
     if (!validate_email(email) || !validate_password(password)) {

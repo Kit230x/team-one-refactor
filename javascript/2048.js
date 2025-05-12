@@ -3,7 +3,7 @@ let score = 0;
 let rows = 4;
 let columns = 4;
 
-// Polyfill for requestAnimationFrame and cancelAnimationFrame
+// RIGID ANIMATION TESTING
 (function () {
     var lastTime = 0;
     var vendors = ['webkit', 'moz'];
@@ -289,5 +289,5 @@ function gameOver() {
             window.location.reload();
         };
     }
-    saveGameSession('2048 game', score); // Save the final score ONCE at the end
+    saveGameSession('2048 game', score); 
 }
