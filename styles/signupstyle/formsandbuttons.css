@@ -13,9 +13,9 @@ form label {
     background-color: var(--accent-color);
     fill: white;
     color: white;
-    display: flex; /* Make label a flex container */
-    align-items: center; /* Center SVG vertically */
-    justify-content: center; /* Center SVG horizontally */
+    display: flex;
+    align-items: center;
+    justify-content: center; 
     border-radius: 10px 0 0 10px;
     font-size: 1.5rem;
     font-weight: 500;
@@ -63,20 +63,6 @@ form button:focus {
     background-color: var(--text-color);
 }
 
-/* SIGN UP BTN BUTTON */
-.sign-up-btn {
-    color: white; 
-    font-size: 1em; 
-    font-weight: 700;
-    background-color: black;
-}
-
-/* TO DO */
-.sign-up-btn:hover {
-    background-color: grey;
-    cursor: pointer;
-}
-
 @media(max-width: 1100px) {
     .container {
         width: min(600px, 100%);
@@ -96,3 +82,37 @@ button#toggle-password img {
     position: absolute;
 }
 
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-right: 30px;
+  }
+  
+  .auth-btn {
+    background-color: #ffffff;
+    color: #222;
+    border: 2px solid #222;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .auth-btn:hover {
+    background-color: #797979;
+    color: #fff;
+  }
+  
+  .login-btn {
+    background-color: #ffffff;
+  }
+  
+  .signup-btn {
+    background-color: #ffffff;
+    border-color: #111;
+  }
+  
+  

@@ -18,24 +18,16 @@
         <link rel="icon" type="image/svg+xml" href="/img/t1-games-logo.png/favicon.svg" />
         <link rel="shortcut icon" href="/img/t1-games-logo.png/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/img/t1-games-logo.png/apple-touch-icon.png" />
-        <title>Signup</title>
-
+        <title>Login & Signup</title>
+        
 
     </head>
 
-<!--
-TODOS: 
-
-- Need to make it so the entire section for Google and Facebook Auth is a button 
-
-
--->
-
+<!-- ------------------------------------------------------------------------ -->
 
     <body>
             <!-- FIREBASE DATABASE -->
-            <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-        
+            <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>     
             <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
             <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
         
@@ -99,27 +91,42 @@ TODOS:
                             <div style="display: flex; align-items: center; position: relative;"> <label for="password-input">
                                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm0-80h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z"/></svg>
                                 </label>
-                                <input type="password" name="password" id="password" id="password-input;" placeholder="Password" required style="height: 50px;">
+                                <input type="password" name="password" id="password-input" placeholder="Password" required style="height: 50px;">
                                 <button type="button" id="toggle-password" aria-label="Show/Hide Password" style="position: absolute; right: 0; top: 0; background: transparent; border: none; padding: 10px;">
-                                    
-                                    <!-- Default: Visibility Off (show password) image -->
-                                    <img id="visibility-on" src="img/vison.png" alt="Show Password" style="width: 24px; height: 24px; display: block;">
+                                    <img id="visibility-on" src="img/vison.png" alt="Show Password" style="width: 24px; height: 24px; display: block; margin-top: 9px;">
+                                    <img id="visibility-off" src="img/visoff.png" alt="Hide Password" style="width: 24px; height: 24px; display: none; margin-top: 9px;">
+                                </button>                                
                                 
-                                    <!-- Visibility Off (hide password) image -->
-                                    
-                                    <img id="visibility-off" src="img/visoff.png" alt="Hide Password" style="width: 24px; height: 24px; display: none;">
-                                </button>
                             </div>
                         </form>
          
                         <div id="button_container" style="display: inline-block; padding: 25px;">
-                            <button onclick="login()" style="color: black; text-decoration: none; margin-right: 30px;" class="nav-hover">Login</button>
-                            <button onclick="register()" style="color: black; text-decoration: none;" class="nav-hover">Sign Up</button>
+                            <button onclick="login()" style="color: black; text-decoration: none; margin-right: 30px;" class="nav-hover auth-btn login-btn">Login</button>
+                            <button onclick="register()" style="color: black; text-decoration: none;" class="nav-hover auth-btn signup-btn">Sign Up</button>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
+
+
+        <!-- TOGGLE ABILITY TO SEE YOUR PASSWORD -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              const togglePasswordButton = document.getElementById("toggle-password");
+              const passwordInput = document.getElementById("password-input");
+              const visibilityOnIcon = document.getElementById("visibility-on");
+              const visibilityOffIcon = document.getElementById("visibility-off");
+          
+              togglePasswordButton.addEventListener("click", () => {
+                const isPassword = passwordInput.type === "password";
+                passwordInput.type = isPassword ? "text" : "password";
+                visibilityOnIcon.style.display = isPassword ? "none" : "block";
+                visibilityOffIcon.style.display = isPassword ? "block" : "none";
+              });
+            });
+          </script>
+
     </body>
 </html>
 
