@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- LINKS TO STYLING FOLDERS-->
+        <link rel="stylesheet" href="styles/nav.css">
+        <link rel="stylesheet" href="styles/signupstyle/containerrules.css">
+        <link rel="stylesheet" href="styles/signupstyle/formsandbuttons.css">
+
+        
+        <!-- SEARCH BAR ICON -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+
+        <!-- FAVICON-->
+        <link rel="icon" type="image/png" href="/img/t1-games-logo.png/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/img/t1-games-logo.png/favicon.svg" />
+        <link rel="shortcut icon" href="/img/t1-games-logo.png/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/img/t1-games-logo.png/apple-touch-icon.png" />
+        <title>Signup</title>
+
+
+    </head>
+
+<!--
+TODOS: 
+
+- Need to make it so the entire section for Google and Facebook Auth is a button 
+
+
+-->
+
+
+    <body>
+            <!-- FIREBASE DATABASE -->
+            <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+        
+            <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+        
+            <script src="javascript/config.js"></script>        
+            <script src="javascript/auth-state.js"></script>        
+            <script src="/javascript/randombutton.js"></script>        
+
+<!-- ------------------------------------------------------------------------ -->
+
+          <!-- START*** NAVIGATION BAR -->
+          <div class="outter-navcontainer">
+            <nav style="margin: auto; display: flex; justify-content: space-evenly; width: 850px;">
+                <div class="navbar-container" id="navBarContainer" style="padding: 5px 10px; height: 35px;">
+        
+                    <div class="left-container" style="margin-left: 50px;">
+                        <div>
+                            <a href="index.html" class="navbar-logo">
+                                <img src="img/t1-games-logo.png" style="width: 20px; margin-left: 20px;">
+                                <span class="navbar-logotext nav-hover"><b>T1 Games</b></span>
+                            </a>
+                        </div>
+                    </div>
+        
+                    <span id="randomButton" class="nav-random nav-hover">Play a Random Game</span>
+        
+                    <div class="right-container" style="margin-right: 50px;">
+                        <div class="navbar-loginsignup nav-hover" style="margin-right: 25px; margin-top: 5px;">
+                            <a href="login.html" class="signup-login nav-hover">Login</a>
+                            <span>/</span>
+                            <a href="signup.html" class="signup-login nav-hover">Sign Up</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- END*** NAV BAR -->
+
+<!-- ------------------------------------------------------------------------ -->
+
+    <!-- MAIN CONTENT OF WEBSITE-->
+
+
+        </main>
+
+
+        <div id="button_container" style="display: inline-block; padding: 25px;">
+            <button onclick="login()" style="color: black; text-decoration: none; margin-right: 30px;" class="nav-hover">Login</button>
+            <button onclick="register()" style="color: black; text-decoration: none;" class="nav-hover">Sign Up</button>
+        </div>
+    </body>
+</html>
+
+
+<!-- ------------------------------------------------------------------------ -->

@@ -1,4 +1,3 @@
-
 let board;
 let context;
 
@@ -93,9 +92,8 @@ Snake.prototype.move = function () {
     this.head.y >= boardHeight
   ) {
     clearInterval(timer);
-    gameOverMessage.innerText = "Game Over: You hit the wall!";
-    gameOverMessage.style.display = "block";
-    restartBtn.disabled = false;
+    endGame("Game Over: You hit the wall!"); // Use the endGame function
+    return; // Important: stop further execution of move
   }
 
   for (let i = 1; i < this.snakeArry.length; i++) {
@@ -104,9 +102,8 @@ Snake.prototype.move = function () {
       this.snakeArry[i].y === this.head.y
     ) {
       clearInterval(timer);
-      gameOverMessage.innerText = "Game Over: You hit yourself!";
-      gameOverMessage.style.display = "block";
-      restartBtn.disabled = false;
+      endGame("Game Over: You hit yourself!"); // Use the endGame function
+      return; // Important: stop further execution of move
     }
   }
 };
@@ -217,3 +214,13 @@ document.onkeydown = function (e) {
     snake.direction = newDir;
   }
 };
+
+function endGame(message) {
+  console.log('endGame function called');
+  gameOverMessage.innerText = message;
+  gameOverMessage.style.display = "block";
+  restartBtn.disabled = false;
+
+  // Call saveGameScore here
+  saveGameScore('snake', score);
+}

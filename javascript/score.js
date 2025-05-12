@@ -1,6 +1,28 @@
-function displayUserScores() {
+function saveGameScore(gameName, score) {
+    const user = firebase.auth().currentUser;
+    if (user) {
+      const userId = user.uid;
+      const timestamp = Date.now();
+      const userScoresRef = firebase.database().ref(`user_scores/${userId}/${gameName}`);
+  
+      userScoresRef.push({
+        score: score,
+        timestamp: timestamp
+      })
+      .then(() => {
+        console.log(`Score ${score} saved for ${gameName} by user ${userId} at ${new Date(timestamp).toLocaleString()}`);
+      })
+      .catch((error) => {
+        console.error('Error saving game score:', error);
+      });
+    } else {
+      console.log('User not logged in, cannot save score.');
+    }
+  }
+
+  function displayUserScores() {
     const userScoresDiv = document.getElementById('userScores');
-    userScoresDiv.innerHTML = '<h3>Top Scores</h3>'; // Clear previous content
+    userScoresDiv.innerHTML = '<h3>Your Recent Scores</h3>'; // Clear previous content
   
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
