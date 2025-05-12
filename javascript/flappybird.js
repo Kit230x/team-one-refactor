@@ -30,9 +30,9 @@ let topPipeImg;
 let bottomPipeImg;
 
 // PHYSICS
-let velocityX = -1; // MOVEMENT OF PIPE
+let velocityX = -2.5; // MOVEMENT OF PIPE
 let velocityY = -0; // JUMP SPEED 
-let gravity = 0.2;
+let gravity = 0.4;
 
 let gameOver = false;  
 let score = 0;
@@ -153,7 +153,6 @@ function moveBird(e) {
         }
     }
 }
-
 
 function detectCollision(a, b) {
     return a.x < b.x + b.width &&   //a's top left corner doesn't reach b's top right corner

@@ -2,7 +2,6 @@
     font-family: sans-serif;
     color: var(--text-color);
     background-color: var(--background-color);
-    box-sizing: border-box;
 }
 
 .main-wrapper {
@@ -11,30 +10,17 @@
     flex-direction: column;
 }
 
-main {
-    flex: 1;
-}
-
 .background {
     overflow-x: visible;
     width: 100%;
-    max-width: 1200px;
 }
 
-.sidebar {
-    display: flex;
-    width: 200px;
+body {
+    text-align: center;
 }
 
 #board {
     background-image: url("/arcade-games/flappy-bird-img//flappybirdbg.png");
-    /* background-image: url("/flappy-bird-img/flappybirdbg.png"); */
-    background-size: cover;
-    display: block;
-    filter: brightness(100%);
-    max-width: 100%;
-    height: auto;
-    z-index: 1000;
 }
 
 .main-container {
@@ -42,12 +28,10 @@ main {
     width: 100%;
     height: 850px;
     margin: 50px 0;
-    border: 10px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    z-index: 100;
 }
 
 .game-container {
@@ -56,19 +40,15 @@ main {
     align-items: center;
     border: 20px solid black;
     border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.2); /* optional overlay tint */
     padding: 10px;
-    position: relative;
 }
 
 .game-title-tag {
     margin: auto;
-    display: inline-block;
 }
 
 footer {
     background-color: rgb(38, 38, 38);
-    border-top: 5px solid #111;
     display: flex;
     justify-content: space-evenly;
     padding: 10px 0;

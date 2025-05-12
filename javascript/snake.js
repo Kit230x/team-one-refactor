@@ -221,10 +221,11 @@ document.onkeydown = function (e) {
 
 function endGame(message) {
   console.log('endGame function called');
+  console.log('Current user in endGame:', firebase.auth().currentUser);
+  saveGameScore('snake', score);
+
+  clearInterval(timer);
   gameOverMessage.innerText = message;
   gameOverMessage.style.display = "block";
   restartBtn.disabled = false;
-
-  // Call saveGameScore here
-  saveGameScore('snake', score);
 }
