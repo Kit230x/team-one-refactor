@@ -69,7 +69,7 @@ color: #0b3d10; /* dark green table color or near black */
     display: flex;
     justify-content: center;
     gap: 16px;
-    margin-top: 20px;
+    margin-top: 175px;
     flex-wrap: wrap;
 }
   
@@ -91,4 +91,38 @@ color: #0b3d10; /* dark green table color or near black */
 #options-list button:hover {
     background: #f3e4b0;
     color: #0b3d10;
+}
+
+
+#player-score {
+    position: absolute;
+    border: 2px solid #f5deb3;
+    bottom: 20px;
+    left: 20px; 
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: transparent;
+    color: white;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    border-radius: 5px; 
+    display: inline-block;
+    text-align: center;
+}
+
+
+#dealer-score {
+    position: absolute;
+    border: 2px solid #f5deb3;
+    top: 20px;
+    right: 20px; 
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: transparent;
+    color: white;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    border-radius: 5px; 
+    display: inline-block;
+    text-align: center;
 }
