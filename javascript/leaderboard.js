@@ -10,9 +10,8 @@ function fetchAndDisplayLeaderboard() {
   
     userScoresRef.once('value', (snapshot) => {
       const allUserScores = snapshot.val();
-      const gameLeaderboards = {};
+      const gameLeaderboardData = {}; // Store data for each game
   
-      // Process all user scores to find top scores for each game
       if (allUserScores) {
         for (const userId in allUserScores) {
           const userGameScores = allUserScores[userId];
@@ -21,20 +20,18 @@ function fetchAndDisplayLeaderboard() {
               const scores = userGameScores[gameName];
               for (const scoreId in scores) {
                 const scoreData = scores[scoreId];
-                if (!gameLeaderboards[gameName]) {
-                  gameLeaderboards[gameName] = [];
+                if (!gameLeaderboardData[gameName]) {
+                  gameLeaderboardData[gameName] = [];
                 }
-                gameLeaderboards[gameName].push({ userId: userId, score: scoreData.score, timestamp: scoreData.timestamp });
+                gameLeaderboardData[gameName].push({ userId: userId, score: scoreData.score, timestamp: scoreData.timestamp });
               }
             }
           }
         }
   
-        // Sort the leaderboards for each game
-        for (const gameName in gameLeaderboards) {
-          if (gameLeaderboards[gameName]) {
-            gameLeaderboards[gameName].sort((a, b) => b.score - a.score);
-          }
+        // Sort the leaderboard data for each game
+        for (const gameName in gameLeaderboardData) {
+          gameLeaderboardData[gameName].sort((a, b) => Number(b.score) - Number(a.score));
         }
       }
   
@@ -49,26 +46,25 @@ function fetchAndDisplayLeaderboard() {
         title.textContent = gameName;
         gameDiv.appendChild(title);
   
-        if (gameLeaderboards[gameName] && gameLeaderboards[gameName].length > 0) {
-          const ol = document.createElement('ol');
-          for (let i = 0; i < Math.min(3, gameLeaderboards[gameName].length); i++) {
-            const entry = gameLeaderboards[gameName][i];
-            usersRef.child(entry.userId).once('value', (userSnapshot) => {
+        let leaderboardHTML = '';
+        if (gameLeaderboardData[gameName] && gameLeaderboardData[gameName].length > 0) {
+          leaderboardHTML = '<ol>';
+          const topScores = gameLeaderboardData[gameName].slice(0, 3); // Get top 3
+          let promises = topScores.map(entry => {
+            return usersRef.child(entry.userId).once('value').then(userSnapshot => {
               const userData = userSnapshot.val();
               const username = userData ? userData.full_name : 'Unknown User';
               const formattedTimestamp = new Date(entry.timestamp).toLocaleTimeString();
-              const li = document.createElement('li');
-              li.textContent = `${username} - Score: ${entry.score} (${formattedTimestamp})`;
-              ol.appendChild(li);
-              if (i === Math.min(3, gameLeaderboards[gameName].length) - 1) {
-                gameDiv.appendChild(ol);
-                leaderboardContainer.appendChild(gameDiv);
-              } else if (!gameDiv.querySelector('ol')) {
-                gameDiv.appendChild(ol); // Append the ol on the first entry
-                leaderboardContainer.appendChild(gameDiv);
-              }
+              return `<li>${username} - Score: ${entry.score} (${formattedTimestamp})</li>`;
             });
-          }
+          });
+  
+          Promise.all(promises).then(listItems => {
+            leaderboardHTML += listItems.join('');
+            leaderboardHTML += '</ol>';
+            gameDiv.innerHTML += leaderboardHTML;
+            leaderboardContainer.appendChild(gameDiv);
+          });
         } else {
           const noScores = document.createElement('p');
           noScores.textContent = 'N/A';
@@ -78,8 +74,7 @@ function fetchAndDisplayLeaderboard() {
       });
   
       if (gamesToShow.length > 0 && !allUserScores) {
-        const noScoresInitial = document.createElement('p');
-        noScoresInitial.textContent = 'No scores recorded yet.';
+        const noScoresInitial = document.createElement('<p style="text-align: center; width: 100%;">No scores recorded yet.</p>');
         leaderboardContainer.appendChild(noScoresInitial);
       }
     });
