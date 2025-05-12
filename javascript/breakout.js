@@ -180,8 +180,6 @@ function sweptCollisionDetection(toBeChecked) {
 let gameOverTriggered = false; // Add this at the top-level
 
 function wallCollision(deltaTime) {
-    // ball collision detection
-    // checks if x value goes over or under the width, if so- reverses direction (ball.dx)
     if (ball.x + ball.dx * deltaTime > canvas.width - ball.radius || ball.x + ball.dx * deltaTime < ball.radius) {
         ball.dx = -ball.dx;
         ball.color = getRandomColor();

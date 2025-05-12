@@ -185,17 +185,6 @@ function restartGame() {
   startGame();
 }
 
-function endGame(message) {
-  console.log('endGame function called');
-  clearInterval(timer);
-  gameOverMessage.innerText = message;
-  gameOverMessage.style.display = "block";
-  restartBtn.disabled = false;
-
-  console.log('Current user in endGame:', firebase.auth().currentUser); // Add this line
-  saveGameScore('snake', score);
-}
-
 window.onload = function () {
   board = document.getElementById("board");
   board.width = boardWidth;
@@ -221,8 +210,11 @@ document.onkeydown = function (e) {
 
 function endGame(message) {
   console.log('endGame function called');
-  console.log('Current user in endGame:', firebase.auth().currentUser);
-  saveGameScore('snake', score);
+  if (!firebase.auth().currentUser) {
+    console.warn('User not signed in. Score not saved.');
+    return;
+  }
+    saveGameScore('snake', score);
 
   clearInterval(timer);
   gameOverMessage.innerText = message;
