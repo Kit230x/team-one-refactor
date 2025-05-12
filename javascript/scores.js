@@ -63,3 +63,29 @@ function displayUserScores() {
 // Call this function when the index page loads
 console.log('Calling displayUserScores');
 displayUserScores();
+
+function saveGameSession(gameName, score) {
+  console.log('saveGameSession called for:', gameName, 'score:', score); // Added log
+
+  const user = firebase.auth().currentUser;
+  console.log('Current user in saveGameSession:', user); // Added log
+
+  if (user) {
+    const userId = user.uid;
+    const timestamp = Date.now();
+    const userScoresRef = firebase.database().ref(`user_scores/${userId}/${gameName}`);
+
+    userScoresRef.push({
+      score: score,
+      timestamp: timestamp
+    })
+    .then(() => {
+      console.log(`Score ${score} saved for ${gameName} by user ${userId} at ${new Date(timestamp).toLocaleString()}`);
+    })
+    .catch((error) => {
+      console.error('Error saving game session:', error);
+    });
+  } else {
+    console.log('User not logged in, cannot save score.');
+  }
+}

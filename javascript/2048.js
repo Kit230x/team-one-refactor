@@ -98,7 +98,6 @@ document.addEventListener("keyup", (e) => {
         if (scoreDisplay2048) {
             scoreDisplay2048.innerText = score;
         }
-        saveGameSession('2048-game', score); // Save score after a valid move
         if (!canMove()) {
             gameOver();
         }
@@ -277,7 +276,7 @@ function gameOver() {
         restartButton = document.createElement("button");
         restartButton.id = "restart-button";
         restartButton.innerText = "Restart Game";
-        restartButton.onclick = () => { // Changed onclick to a function that reloads the page
+        restartButton.onclick = () => {
             window.location.reload();
         };
         const boardContainer = document.getElementById("board-container");
@@ -286,9 +285,9 @@ function gameOver() {
         }
     } else {
         restartButton.style.display = "block";
-        restartButton.onclick = () => { // Ensure onclick is set even if button exists
+        restartButton.onclick = () => {
             window.location.reload();
         };
     }
-    saveGameSession('2048-game', score); // Save the final score on game over
+    saveGameSession('2048 game', score); // Save the final score ONCE at the end
 }
