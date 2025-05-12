@@ -177,6 +177,8 @@ function sweptCollisionDetection(toBeChecked) {
     return false; // no collision detected
 }
 
+let gameOverTriggered = false; // Add this at the top-level
+
 function wallCollision(deltaTime) {
     // ball collision detection
     // checks if x value goes over or under the width, if so- reverses direction (ball.dx)
@@ -184,21 +186,24 @@ function wallCollision(deltaTime) {
         ball.dx = -ball.dx;
         ball.color = getRandomColor();
     }
-
     // checks if y value goes under the height, if so- reverses direction (ball.dy)
-    if (ball.y + ball.dy * deltaTime < ball.radius) {
-        ball.dy = -ball.dy;
-        ball.color = getRandomColor();
-    } else if (ball.y + ball.dy * deltaTime > canvas.height + offscreenBuffer) {
+    if (ball.y + ball.dy * deltaTime > canvas.height + offscreenBuffer) {
         lives--;
         if (lives < 0) lives = 0;
-        if (lives === 0) {
-            setTimeout(() => { gameState = "gameover" }, 500);
+
+        if (lives === 0 && !gameOverTriggered) {
+            gameOverTriggered = true; // Prevent multiple calls
+            setTimeout(() => {
+                gameState = "gameover";
+                saveGameSession('breakout', score); // Save score on game over
+            }, 500);
             return;
         }
+
         resetBall();
     }
 }
+
 
 function ballMovement(deltaTime) {
     // this clamps the speed value between 3 and 11, then assigns the appropriate sign
@@ -341,11 +346,9 @@ function resetGame() {
 }
 
 let lastTime = Date.now();
+let gameWinTriggered = false; // Add this flag at the top
 
 function draw() {
-    // clearRect() will wipe the canvas every frame.
-    // params- starting x and y coords, width and height
-
     const now = Date.now();
     let deltaTime = (now - lastTime) / 1000; // deltaTime in seconds
     lastTime = now;
@@ -358,6 +361,7 @@ function draw() {
         return;
     } else if (gameState === "win") {
         drawWinScreen();
+        saveGameSession('breakout', score); // Save score on win
         requestAnimationFrame(draw);
         return;
     } else if (gameState === "gameover") {
@@ -384,7 +388,7 @@ function draw() {
     }
 
     if (!collidedThisFrame) {
-        sweptCollisionDetection(paddle);    
+        sweptCollisionDetection(paddle);
     }
     wallCollision(deltaTime);
     ballMovement(deltaTime);
